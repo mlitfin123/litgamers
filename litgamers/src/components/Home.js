@@ -9,7 +9,7 @@ const Home = () => {
                     <Sidebar />
                 </div>
                 <div class="col">
-                    <h1 className="title">Welcome</h1>
+                    <h1 className="title">Welcome Gamers!</h1>
                 </div>
             </div>
         </main>

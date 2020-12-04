@@ -17,7 +17,7 @@ app.use(express.json());
 
 // Serve static content for the app from the "public" directory in the application directory.
 app.use(express.static("FieryRedhead"));
-app.use(express.static("public"));
+app.use(express.static("SpaceShooters"));
 
 
 router.get('/fiery',function(req,res){
