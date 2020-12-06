@@ -1,31 +1,128 @@
 const express = require("express");
 const path = require('path');
+require('dotenv').config();
 var cors = require('cors')
+const bodyParser = require('body-parser');
+const jwt = require('jsonwebtoken');
+const utils = require('./utils');
+
 const router = express.Router();
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 4000;
 
 const app = express();
 
-app.use(cors({
-    methods: ["GET", "POST", "PUT"],
-    credentials: true,
-}))
-// Parse request body as JSON
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+const userData = {
+    userId: "789789",
+    password: "123456",
+    name: "Clue Mediator",
+    username: "cluemediator",
+    isAdmin: true
+};
+
+app.use(cors())
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+//login functions
+app.use(function (req, res, next) {
+    // check header or url parameters or post parameters for token
+    var token = req.headers['authorization'];
+    if (!token) return next(); //if no token, continue
+
+    token = token.replace('Bearer ', '');
+    jwt.verify(token, process.env.JWT_SECRET, function (err, user) {
+    if (err) {
+        return res.status(401).json({
+        error: true,
+        message: "Invalid user."
+        });
+    } else {
+        req.user = user; //set the user to req so other routes can use it
+        next();
+    }
+    });
+});
+
+
+// request handlers
+app.get('/', (req, res) => {
+    if (!req.user) return res.status(401).json({ success: false, message: 'Invalid user to access it.' });
+    res.send('Welcome to the Node.js Tutorial! - ' + req.user.name);
+});
+
+
+// validate the user credentials
+app.post('/users/signin', function (req, res) {
+    const user = req.body.username;
+    const pwd = req.body.password;
+
+    // return 400 status if username/password is not exist
+    if (!user || !pwd) {
+    return res.status(400).json({
+        error: true,
+        message: "Username or Password required."
+    });
+    }
+
+    // return 401 status if the credential is not match.
+    if (user !== userData.username || pwd !== userData.password) {
+    return res.status(401).json({
+        error: true,
+        message: "Username or Password is Wrong."
+    });
+    }
+
+    // generate token
+    const token = utils.generateToken(userData);
+    // get basic user details
+    const userObj = utils.getCleanUser(userData);
+    // return the token along with user details
+    return res.json({ user: userObj, token });
+});
+
+
+// verify the token and return it if it's valid
+app.get('/verifyToken', function (req, res) {
+    // check header or url parameters or post parameters for token
+    var token = req.body.token || req.query.token;
+    if (!token) {
+    return res.status(400).json({
+        error: true,
+        message: "Token is required."
+    });
+    }
+    // check token that was passed by decoding token using secret
+    jwt.verify(token, process.env.JWT_SECRET, function (err, user) {
+    if (err) return res.status(401).json({
+        error: true,
+        message: "Invalid token."
+    });
+
+    // return 401 status if the userId does not match.
+    if (user.userId !== userData.userId) {
+        return res.status(401).json({
+        error: true,
+        message: "Invalid user."
+        });
+    }
+    // get basic user details
+    var userObj = utils.getCleanUser(userData);
+    return res.json({ user: userObj, token });
+    });
+});
 
 // Serve static content for the app from the "public" directory in the application directory.
-app.use(express.static("FieryRedhead"));
-app.use(express.static("SpaceShooters"));
+app.use(express.static("games/FieryRedhead"));
+app.use(express.static("games/SpaceShooters"));
 
 
 router.get('/fiery',function(req,res){
-    res.sendFile(path.join(__dirname+'/FieryRedhead/index.html'));
+    res.sendFile(path.join(__dirname+'/games/FieryRedhead/index.html'));
     //__dirname : It will resolve to your project folder.
 });
 router.get('/space',function(req,res){
-    res.sendFile(path.join(__dirname+'/SpaceShooters/index.html'));
+    res.sendFile(path.join(__dirname+'/games/SpaceShooters/index.html'));
     //__dirname : It will resolve to your project folder.
 });
 

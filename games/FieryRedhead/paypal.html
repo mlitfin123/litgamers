@@ -1,0 +1,44 @@
+<div id="paypal-button"></div>
+<script src="https://www.paypalobjects.com/api/checkout.js?client-id=AdVcLWrfzohoJg_-jqbnKZ70DToaQjEdlE7AAvAIqxUX4nbXo16XNJy0C4u51Tq4blZklYfeSia-TGwj"></script>
+<script>
+  paypal.Button.render({
+    // Configure environment
+    env: 'sandbox',
+    client: {
+      sandbox: 'AdVcLWrfzohoJg_-jqbnKZ70DToaQjEdlE7AAvAIqxUX4nbXo16XNJy0C4u51Tq4blZklYfeSia-TGwj',
+      production: 'AdVcLWrfzohoJg_-jqbnKZ70DToaQjEdlE7AAvAIqxUX4nbXo16XNJy0C4u51Tq4blZklYfeSia-TGwj'
+    },
+    // Customize button (optional)
+    locale: 'en_US',
+    style: {
+      size: 'small',
+      color: 'gold',
+      shape: 'pill',
+    },
+
+    // Enable Pay Now checkout flow (optional)
+    commit: true,
+
+    // Set up a payment
+    payment: function(data, actions) {
+      return actions.payment.create({
+        transactions: [{
+          amount: {
+            total: '0.01',
+            currency: 'USD'
+          }
+        }],
+      });
+    },
+    // Execute the payment
+    onAuthorize: function(data, actions) {
+      return actions.payment.execute().then(function() {
+          console.log(data);
+          console.log(actions);
+        // Show a confirmation message to the buyer
+        window.alert('Enjoy Your Game! Good Luck!');
+      });
+    }
+  }, '#paypal-button');
+
+</script>

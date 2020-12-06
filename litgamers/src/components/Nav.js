@@ -19,6 +19,9 @@ const Nav = () => {
             case '/contact':
                 setActivePage('contact');
             break;
+            case '/login':
+                setActivePage('login');
+            break;
             default: 
                 setActivePage('/');
             break;
@@ -40,6 +43,9 @@ return (
                 </li>
                 <li className="nav-item">
                     <Link id="navHead" onClick={() => setActivePage('contact')} className={activePage === 'contact' ? 'nav-link active' : 'nav-link'} to="/contact">Contact</Link>
+                </li>
+                <li className="nav-item">
+                    <Link id="navHead" onClick={() => setActivePage('login')} className={activePage === 'login' ? 'nav-link active' : 'nav-link'} to="/login">Login</Link>
                 </li>
             </ul>
         </div>

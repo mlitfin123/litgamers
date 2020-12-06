@@ -3,8 +3,8 @@ import Sidebar from './Sidebar';
 
 const FreeGames = () => {
 
-    const fieryredhead = 'http://localhost:3001/fiery'
-    const spaceshooter = 'http://localhost:3001/space'
+    const fieryredhead = 'http://localhost:4000/fiery'
+    const spaceshooter = 'http://localhost:4000/space'
 
     return (
         <main>
