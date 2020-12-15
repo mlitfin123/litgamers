@@ -14,14 +14,26 @@ const FreeGames = () => {
                 </div>
                 <div class="col">
                     <h1 className="title">Free Games</h1>
-                    <div id="fiery" className="games">
-                        <a href={fieryredhead}><img src="..\images\Icon.PNG" alt="play the game" width="150px"></img>
-                        <h3 className="gameLabel">Fiery Redhead</h3></a>
-                    </div>
-                    <div id="space" className="games">
-                        <a href={spaceshooter}><img src="..\images\Space_Shooter icon.png" alt="play the game" width="150px"></img>
-                        <h3 className="gameLabel">Space Shooter</h3></a>
-                    </div>
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                            <td>
+                                <div id="fiery" className="games">
+                                    <a href={fieryredhead}><img src="..\images\Icon.PNG" alt="play the game" width="150px"></img>
+                                    <h3 className="gameLabel">Fiery Redhead</h3></a>
+                                </div>
+                            </td>
+                            </tr>
+                            <tr>
+                            <td>
+                                <div id="space" className="games">
+                                    <a href={spaceshooter}><img src="..\images\Space_Shooter icon.png" alt="play the game" width="150px"></img>
+                                    <h3 className="gameLabel">Space Shooter</h3></a>
+                                </div>
+                            </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </main>

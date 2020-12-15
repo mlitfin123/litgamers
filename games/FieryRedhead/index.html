@@ -3,9 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | Fiery Redhead</title>
+    <title>Fiery Redhead</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
+    <script src="https://download.playfab.com/PlayFabClientApi.js"></script>
   </head>
   <body>
     <div id="unity-container" class="unity-desktop">
@@ -65,6 +66,74 @@
         });
       };
       document.body.appendChild(script);
+    </script>
+    <script>
+      var cookieEmail;
+      var cookiePass;
+      function getCookie(key) {
+        var name = key + "=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        for(var i = 0; i <ca.length; i++) {
+          var c = ca[i];
+          while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+            console.log(c)
+          }
+          if (c.indexOf(name) == 0) {
+              console.log(c)
+            return c.substring(name.length, c.length);
+          }
+        }
+        return "";
+      }
+      function checkCookie() {
+        var username = getCookie("user");
+        var pass = getCookie("pass");
+        if (username != "" || pass != "") {
+            cookieEmail = username;
+            cookiePass = pass;
+            console.log(cookiePass)
+        } else {
+            alert("Please Login");
+            history.back()
+        }
+      }
+      checkCookie();
+      // Function which receives a message from Unity
+      async function receiveMessageFromUnity(txt) {
+        // Get element to assign the message
+        const finalScore = txt;
+        console.log("final" + " " + finalScore)
+        
+          PlayFab.settings.titleId = "1DF75";
+          var loginRequest = {
+              Email: cookieEmail,
+              Password: cookiePass,
+              TitleId: PlayFab.settings.titleId
+          };
+          var playfabID;
+          console.log(loginRequest)
+          PlayFabClientSDK.LoginWithEmailAddress(loginRequest, function (result, error)
+            {
+              playfabID = result.data.PlayFabId;
+              console.log(result)});
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        var statisticsUpdate = 
+          {
+              PlayFabId: playfabID,
+              Statistics:[
+              {
+                StatisticName: "HotSauceDaily",
+                Value: finalScore
+              }
+            ]
+          }
+        console.log(statisticsUpdate)
+          PlayFabClientSDK.UpdatePlayerStatistics(statisticsUpdate, function (result, error)
+          {console.log(result)
+            console.log("leaderboardupdated")})
+      }
     </script>
   </body>
 </html>

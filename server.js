@@ -13,11 +13,7 @@ const PORT = process.env.PORT || 4000;
 const app = express();
 
 const userData = {
-    userId: "789789",
-    password: "123456",
-    name: "Clue Mediator",
-    username: "cluemediator",
-    isAdmin: true
+    name: "LocalHost"
 };
 
 app.use(cors())
@@ -48,35 +44,16 @@ app.use(function (req, res, next) {
 // request handlers
 app.get('/', (req, res) => {
     if (!req.user) return res.status(401).json({ success: false, message: 'Invalid user to access it.' });
-    res.send('Welcome to the Node.js Tutorial! - ' + req.user.name);
 });
 
 
 // validate the user credentials
-app.post('/users/signin', function (req, res) {
+app.post('/users/signin', async function (req, res) {
     const user = req.body.username;
-    const pwd = req.body.password;
-
-    // return 400 status if username/password is not exist
-    if (!user || !pwd) {
-    return res.status(400).json({
-        error: true,
-        message: "Username or Password required."
-    });
-    }
-
-    // return 401 status if the credential is not match.
-    if (user !== userData.username || pwd !== userData.password) {
-    return res.status(401).json({
-        error: true,
-        message: "Username or Password is Wrong."
-    });
-    }
-
     // generate token
-    const token = utils.generateToken(userData);
+    const token = utils.generateToken(user);
     // get basic user details
-    const userObj = utils.getCleanUser(userData);
+    const userObj = utils.getCleanUser(user);
     // return the token along with user details
     return res.json({ user: userObj, token });
 });
@@ -125,10 +102,15 @@ router.get('/space',function(req,res){
     res.sendFile(path.join(__dirname+'/games/SpaceShooters/index.html'));
     //__dirname : It will resolve to your project folder.
 });
+router.get('/login',function(req,res){
+    res.sendFile(path.join(__dirname+'/PlayFab/PlayFabGettingStarted.js'));
+    //__dirname : It will resolve to your project folder.
+});
 
 app.use('/', router);
 app.use('/fiery', router);
 app.use('/space', router);
+app.use('/login', router);
 
 app.listen(PORT, function() {
     console.log("App now listening at localhost:" + PORT);

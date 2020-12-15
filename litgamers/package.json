@@ -9,6 +9,8 @@
     "axios": "^0.21.0",
     "http-server": "^0.12.3",
     "node": "^15.3.0",
+    "playfab-sdk": "^2.60.201207",
+    "playfab-web-sdk": "^1.78.201207",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",

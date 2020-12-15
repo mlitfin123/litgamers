@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { setUserSession } from '../utils/Common';
+import {PlayFabClient} from 'playfab-sdk';
 
 function Login(props) {
     const [loading, setLoading] = useState(false);
@@ -8,19 +9,45 @@ function Login(props) {
     const password = useFormInput('');
     const [error, setError] = useState(null);
     
+    const playFabLogin = () => {
+        const pwd = password.value;
+        PlayFabClient.settings.titleId = "1DF75";
+        const email = username.value;
+        var loginRequest = {
+            // Currently, you need to look up the correct format for this object in the API-docs:
+            // https://api.playfab.com/Documentation/Client/method/LoginWithCustomID
+            Email: email,
+            Password: pwd,
+            TitleId: PlayFabClient.settings.titleId
+        };
+        PlayFabClient.LoginWithEmailAddress(loginRequest, async function (result, error) {
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            if (result == null) {
+                axios.post('http://localhost:4000/users/signin', { username: username.value, password: password.value }).then(response => {
+                    console.log(response)
+                    setLoading(false);
+                    setUserSession(response.data.token, email, pwd);
+                    props.history.push('/dashboard');
+                    }).catch(error => {
+                    setLoading(false);
+                    if (error.response.status === 401) setError(error.response.data.message);
+                        else setError("Something went wrong. Please try again later.");
+                    });
+            }
+            else if (result !== null) {
+                console.log(result)
+                setLoading(false);
+                setError(result.errorMessage)
+                return(result);
+            } 
+        });
+    }
+    
     // handle button click of login form
     const handleLogin = () => {
         setError(null);
         setLoading(true);
-        axios.post('http://localhost:4000/users/signin', { username: username.value, password: password.value }).then(response => {
-        setLoading(false);
-        setUserSession(response.data.token, response.data.user);
-        props.history.push('/dashboard');
-        }).catch(error => {
-        setLoading(false);
-        if (error.response.status === 401) setError(error.response.data.message);
-        else setError("Something went wrong. Please try again later.");
-        });
+        playFabLogin();
     }
     
     return (
@@ -28,7 +55,7 @@ function Login(props) {
         Login<br /><br />
         <div>
             Username<br />
-            <input type="text" {...username} autoComplete="new-password" />
+            <input id="user" type="text" {...username} autoComplete="new-password" />
         </div>
         <div style={{ marginTop: 10 }}>
             Password<br />
