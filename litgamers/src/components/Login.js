@@ -24,7 +24,7 @@ function Login(props) {
         PlayFabClient.LoginWithEmailAddress(loginRequest, async function (result, error) {
             await new Promise(resolve => setTimeout(resolve, 2000));
             if (result == null) {
-                axios.post('http://localhost:4000/users/signin', { username: username.value, password: password.value }).then(response => {
+                axios.post('https://litgamers-server.herokuapp.com/users/signin', { username: username.value, password: password.value }).then(response => {
                     console.log(response)
                     setLoading(false);
                     setUserSession(response.data.token, email, pwd);

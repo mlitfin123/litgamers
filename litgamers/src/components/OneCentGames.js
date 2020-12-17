@@ -26,7 +26,7 @@ const OneCent = () => {
         getBalance();
         await new Promise(resolve => setTimeout(resolve, 1000));
         if (balance >= .01 ){
-            window.location.href ='http://localhost:4000/sauce'
+            window.location.href ='https://litgamers-server.herokuapp.com/sauce'
         }
         else if (balance <= .01 ){
             alert("Your account is inneficient, please deposit additional funds")

@@ -5,6 +5,7 @@ var cors = require('cors')
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 const utils = require('./utils');
+const session = require('./backSession');
 
 const router = express.Router();
 
@@ -63,6 +64,7 @@ app.post('/users/signin', async function (req, res) {
 app.get('/verifyToken', function (req, res) {
     // check header or url parameters or post parameters for token
     var token = req.body.token || req.query.token;
+    session.setUserSession();
     if (!token) {
     return res.status(400).json({
         error: true,

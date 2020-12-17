@@ -3,8 +3,8 @@ import Sidebar from './Sidebar';
 
 const Home = () => {
 
-    const hotSauce = 'http://localhost:4000/sauceFree'
-    const spaceshooter = 'http://localhost:4000/space'
+    const hotSauce = 'https://litgamers-server.herokuapp.com/sauceFree'
+    const spaceshooter = 'https://litgamers-server.herokuapp.com/space'
     
     return (
         <main>

@@ -26,7 +26,7 @@ const FiveCent = () => {
         getBalance();
         await new Promise(resolve => setTimeout(resolve, 1000));
         if (balance >= .05 ){
-            window.location.href ='http://localhost:4000/sauce5'
+            window.location.href ='https://litgamers-server.herokuapp.com/sauce5'
         }
         else if (balance <= .05 ){
             alert("Your account is inneficient, please deposit additional funds")
