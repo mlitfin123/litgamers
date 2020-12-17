@@ -13,6 +13,14 @@ main{
 header{
   text-align: center;
 }
+button {
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  border: none;
+  cursor:pointer;
+  overflow: hidden;
+  outline:none;
+}
 .title{
   padding: 20px;
   text-align: center;

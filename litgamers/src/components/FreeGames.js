@@ -3,7 +3,7 @@ import Sidebar from './Sidebar';
 
 const FreeGames = () => {
 
-    const fieryredhead = 'http://localhost:4000/fiery'
+    const hotSauce = 'http://localhost:4000/sauceFree'
     const spaceshooter = 'http://localhost:4000/space'
 
     return (
@@ -18,9 +18,9 @@ const FreeGames = () => {
                         <tbody>
                             <tr>
                             <td>
-                                <div id="fiery" className="games">
-                                    <a href={fieryredhead}><img src="..\images\Icon.PNG" alt="play the game" width="150px"></img>
-                                    <h3 className="gameLabel">Fiery Redhead</h3></a>
+                                <div id="sauce" className="games">
+                                    <a href={hotSauce}><img src="..\images\Icon.PNG" alt="play the game" width="150px"></img>
+                                    <h3 className="gameLabel">Hot Sauce Fury</h3></a>
                                 </div>
                             </td>
                             </tr>

@@ -90,12 +90,32 @@ app.get('/verifyToken', function (req, res) {
 });
 
 // Serve static content for the app from the "public" directory in the application directory.
-app.use(express.static("games/FieryRedhead"));
+app.use(express.static("games/HotSauce"));
 app.use(express.static("games/SpaceShooters"));
 
 
-router.get('/fiery',function(req,res){
-    res.sendFile(path.join(__dirname+'/games/FieryRedhead/index.html'));
+router.get('/sauce',function(req,res){
+    res.sendFile(path.join(__dirname+'/games/HotSauce/index.html'));
+    //__dirname : It will resolve to your project folder.
+});
+router.get('/sauce5',function(req,res){
+    res.sendFile(path.join(__dirname+'/games/HotSauce/indexFivety.html'));
+    //__dirname : It will resolve to your project folder.
+});
+router.get('/sauce50',function(req,res){
+    res.sendFile(path.join(__dirname+'/games/HotSauce/indexFifty.html'));
+    //__dirname : It will resolve to your project folder.
+});
+router.get('/sauceOne',function(req,res){
+    res.sendFile(path.join(__dirname+'/games/HotSauce/indexOne.html'));
+    //__dirname : It will resolve to your project folder.
+});
+router.get('/sauceFive',function(req,res){
+    res.sendFile(path.join(__dirname+'/games/HotSauce/indexFive.html'));
+    //__dirname : It will resolve to your project folder.
+});
+router.get('/sauceFree',function(req,res){
+    res.sendFile(path.join(__dirname+'/games/HotSauce/indexFree.html'));
     //__dirname : It will resolve to your project folder.
 });
 router.get('/space',function(req,res){
@@ -108,7 +128,12 @@ router.get('/login',function(req,res){
 });
 
 app.use('/', router);
-app.use('/fiery', router);
+app.use('/sauce', router);
+app.use('/sauce5', router);
+app.use('/sauce50', router);
+app.use('/sauceOne', router);
+app.use('/sauceFive', router);
+app.use('/sauceFree', router);
 app.use('/space', router);
 app.use('/login', router);
 

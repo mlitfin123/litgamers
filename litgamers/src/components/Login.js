@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from "react-router-dom";
 import axios from 'axios';
 import { setUserSession } from '../utils/Common';
 import {PlayFabClient} from 'playfab-sdk';
@@ -42,6 +43,9 @@ function Login(props) {
             } 
         });
     }
+    const register = () => {
+        <Link id="navHead" to="/register"></Link>
+    }
     
     // handle button click of login form
     const handleLogin = () => {
@@ -52,7 +56,7 @@ function Login(props) {
     
     return (
         <div>
-        Login<br /><br />
+        <h2>Login</h2><br /><br />
         <div>
             Username<br />
             <input id="user" type="text" {...username} autoComplete="new-password" />
@@ -63,6 +67,7 @@ function Login(props) {
         </div>
         {error && <><small style={{ color: 'red' }}>{error}</small><br /></>}<br />
         <input type="button" value={loading ? 'Loading...' : 'Login'} onClick={handleLogin} disabled={loading} /><br />
+        <Link id="register" to="/register">Register New User</Link>
         </div>
     );
     }

@@ -1,14 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { getUser, removeUserSession } from '../utils/Common';
 import {PlayFabClient} from 'playfab-sdk';
 
 function Dashboard(props) {
-    const [balance, setBalance] = useState();
+    const [balance, setBalance] = useState('');
     const user = getUser();
     var orderId;
     var confirmURL;
+    var addCurrency;
+
+    useEffect(() => {
+        getBalance();
+    })
+
+    const getBalance = () => {
+        var userBalance = {
+        }
+        PlayFabClient.GetUserInventory(userBalance, function (error, result) {
+            if (result != null){
+                var currentBalance = result.data.VirtualCurrency.US
+                setBalance((currentBalance / 100).toFixed(2))
+                console.log(balance)
+            }
+            else if (result == null){
+
+            }
+            }
+        )
+    }
 
     const depositTen = async () => {
+        addCurrency = ({
+            Amount: 1000,
+            VirtualCurrency: "US"
+        })
         var initiatePurchase = {
             Items: [{
                     ItemId: "CurrencyBundle(10)",
@@ -25,6 +50,10 @@ function Dashboard(props) {
         handlePayment();
     }
     const depositFifteen = async () => {
+        addCurrency = ({
+            Amount: 1500,
+            VirtualCurrency: "US"
+        })
         var initiatePurchase = {
             Items: [{
                     ItemId: "CurrencyBundle(15)",
@@ -41,6 +70,10 @@ function Dashboard(props) {
         handlePayment();
     }
     const depositTwenty = async () => {
+        addCurrency = ({
+            Amount: 2000,
+            VirtualCurrency: "US"
+        })
         var initiatePurchase = {
             Items: [{
                     ItemId: "CurrencyBundle(20)",
@@ -57,6 +90,10 @@ function Dashboard(props) {
         handlePayment();
     }
     const depositTwentyFive = async () => {
+        addCurrency = ({
+            Amount: 2500,
+            VirtualCurrency: "US"
+        })
         var initiatePurchase = {
             Items: [{
                     ItemId: "CurrencyBundle(25)",
@@ -73,6 +110,10 @@ function Dashboard(props) {
         handlePayment();
     }
     const depositFifty = async () => {
+        addCurrency = ({
+            Amount: 5000,
+            VirtualCurrency: "US"
+        })
         var initiatePurchase = {
             Items: [{
                     ItemId: "CurrencyBundle(50)",
@@ -89,6 +130,10 @@ function Dashboard(props) {
         handlePayment();
     }
     const depositSeventyFive = async () => {
+        addCurrency = ({
+            Amount: 7500,
+            VirtualCurrency: "US"
+        })
         var initiatePurchase = {
             Items: [{
                     ItemId: "CurrencyBundle(75)",
@@ -105,6 +150,10 @@ function Dashboard(props) {
         handlePayment();
     }
     const depositHundred= async () => {
+        addCurrency = ({
+            Amount: 10000,
+            VirtualCurrency: "US"
+        })
         var initiatePurchase = {
             Items: [{
                     ItemId: "CurrencyBundle(100)",
@@ -143,10 +192,6 @@ function Dashboard(props) {
             OrderId: orderId
         });
         window.confirm("Select Ok once you have made your purchase to confirm")
-        var addCurrency = ({
-            Amount: 10,
-            VirtualCurrency: "US"
-        })
         PlayFabClient.ConfirmPurchase(confirmPurchase, function (error, result) {
             console.log(result)
             if (result == null) {
@@ -173,15 +218,15 @@ function Dashboard(props) {
         <div>
         <br></br>
         <h4>Welcome {user.name}!</h4><br /><br />
-        <h4>Your Current Balance is ""</h4><br></br><br></br>
+        <h4>Your Current Balance is ${balance}</h4><br></br><br></br>
         <h5>Add Additional Funds to your account using PayPal</h5><br></br>
-        <input type="button" onClick={depositTen} value="$10" />
-        <input type="button" onClick={depositFifteen} value="$15" />
-        <input type="button" onClick={depositTwenty} value="$20" />
-        <input type="button" onClick={depositTwentyFive} value="$25" />
-        <input type="button" onClick={depositFifty} value="$50" />
-        <input type="button" onClick={depositSeventyFive} value="$75" />
-        <input type="button" onClick={depositHundred} value="$100" />
+        <input className="depositBTN" type="button" onClick={depositTen} value="$10" />
+        <input className="depositBTN" type="button" onClick={depositFifteen} value="$15" />
+        <input className="depositBTN" type="button" onClick={depositTwenty} value="$20" />
+        <input className="depositBTN" type="button" onClick={depositTwentyFive} value="$25" />
+        <input className="depositBTN" type="button" onClick={depositFifty} value="$50" />
+        <input className="depositBTN" type="button" onClick={depositSeventyFive} value="$75" />
+        <input className="depositBTN" type="button" onClick={depositHundred} value="$100" />
         <br></br>
         <br></br>
         <h5>Withdraw Funds</h5><br></br>

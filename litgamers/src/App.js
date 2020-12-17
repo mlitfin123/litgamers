@@ -18,6 +18,7 @@ import OneDollar from './components/OneDollarGames';
 import PrivateRoute from './utils/PrivateRoute';
 import PublicRoute from './utils/PublicRoute';
 import { getToken, removeUserSession, setUserSession } from './utils/Common';
+import Register from './components/RegisterUser';
 
 function App() {
   const [authLoading, setAuthLoading] = useState(true);
@@ -53,6 +54,7 @@ function App() {
         <Route exact path="/onedollar" component={OneDollar} />
         <Route exact path="/onecent" component={OneCent} />
         <Route exact path="/contact" component={Contact} />
+        <Route exact path="/register" component={Register} />
         <PublicRoute exact path="/login" component={Login} />
         <PrivateRoute exact path="/dashboard" component={Dashboard} />
       </Switch>

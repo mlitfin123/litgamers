@@ -1,8 +1,37 @@
 import React from 'react';
 import Sidebar from './Sidebar';
+import {PlayFabClient} from 'playfab-sdk';
+import axios from 'axios';
 
 const OneCent = () => {
-    const fieryredhead = 'http://localhost:3001/fiery'
+    var balance;
+
+    const getBalance = () => {
+        var userBalance = {
+        }
+        PlayFabClient.GetUserInventory(userBalance, function (error, result) {
+            if (result != null){
+                var currentBalance = result.data.VirtualCurrency.US
+                balance = ((currentBalance / 100).toFixed(2))
+                console.log(balance)
+            }
+            else if (result == null){
+
+            }
+            }
+        )
+    }
+
+    const launchGame = async () => {
+        getBalance();
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        if (balance >= .01 ){
+            window.location.href ='http://localhost:4000/sauce'
+        }
+        else if (balance <= .01 ){
+            alert("Your account is inneficient, please deposit additional funds")
+        }
+    }
     return (
         <main>
             <div class="row">
@@ -31,10 +60,10 @@ const OneCent = () => {
                     <div class="col">
                         <h7>10 or more player entries</h7>
                         <ul>
-                            <li>1st: 4¢ minimum + split pot</li>
-                            <li>2nd: 3¢ minimum + split pot</li>
+                            <li>1st: 3¢ minimum + split pot</li>
+                            <li>2nd: 2¢ minimum + split pot</li>
                             <li>3rd: 2¢ minimum + split pot</li>
-                            <li>4th: 2¢ minimum + split pot</li>
+                            <li>4th: 1¢ minimum + split pot</li>
                             <li>5th: 1¢ minimum + split pot</li>
                         </ul>
                     </div>
@@ -43,9 +72,9 @@ const OneCent = () => {
                         <tbody>
                             <tr>
                             <td>
-                                <div id="fiery" className="games">
-                                    <a href={fieryredhead}><img src="..\images\Icon.PNG" alt="play the game" width="150px"></img>
-                                    <h3 className="gameLabel">Fiery Redhead</h3></a>
+                                <div id="sauce" className="games">
+                                    <button onClick={launchGame}><img src="..\images\Icon.PNG" alt="play the game" width="150px"></img>
+                                    <h3 className="gameLabel">Hot Sauce Fury</h3></button>
                                 </div>
                             </td>
                             </tr>
