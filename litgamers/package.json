@@ -13,7 +13,6 @@
     "playfab-web-sdk": "^1.78.201207",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-native-unity-webgl": "0.0.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.1",
     "react-unity-webgl": "^8.0.2"
