@@ -1,9 +1,9 @@
 import React from 'react';
 import Sidebar from './Sidebar';
+import { Link } from "react-router-dom";
 
 const FreeGames = () => {
 
-    const hotSauce = 'https://litgamers-server.herokuapp.com/sauceFree'
     const spaceshooter = 'https://litgamers-server.herokuapp.com/space'
 
     return (
@@ -19,8 +19,8 @@ const FreeGames = () => {
                             <tr>
                             <td>
                                 <div id="sauce" className="games">
-                                    <a href={hotSauce}><img src="..\images\Icon.PNG" alt="play the game" width="150px"></img>
-                                    <h3 className="gameLabel">Hot Sauce Fury</h3></a>
+                                    <Link to="/saucefree"><img src="..\images\Icon.PNG" alt="play the game" width="150px"></img>
+                                    <h3 className="gameLabel">Hot Sauce Fury</h3></Link>
                                 </div>
                             </td>
                             </tr>

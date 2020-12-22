@@ -1,34 +1,9 @@
 import React from 'react';
 import Sidebar from './Sidebar';
-import {PlayFabClient} from 'playfab-sdk';
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const OneCent = () => {
-    var balance;
 
-    const getBalance = () => {
-        var userBalance = sessionStorage.getItem('balance');
-
-        PlayFabClient.GetUserInventory(userBalance, function (error, result) {
-            if (result != null){
-                var currentBalance = result.data.VirtualCurrency.US
-                balance = ((currentBalance / 100).toFixed(2))
-                console.log(balance)
-            }
-            else if (result == null){
-
-            }
-            }
-        )
-    }
-
-    const launchGame = async () => {
-        getBalance();
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        if (balance <= .01 ){
-            alert("Your account is inneficient, please deposit additional funds")
-        }
-    }
     return (
         <main>
             <div class="row">
@@ -70,7 +45,7 @@ const OneCent = () => {
                             <tr>
                             <td>
                                 <div id="sauce" className="games">
-                                    <Link to="/HotSauce01"><img src="..\images\Icon.PNG" alt="play the game" width="150px"></img>
+                                    <Link to="/sauce01"><img src="..\images\Icon.PNG" alt="play the game" width="150px"></img>
                                     <h3 className="gameLabel">Hot Sauce Fury</h3></Link>
                                 </div>
                             </td>

@@ -31,7 +31,6 @@
         "jsonwebtoken": "^8.5.1",
         "node": "^15.4.0",
         "playfab-sdk": "^2.60.201207",
-        "playfab-web-sdk": "^1.78.201207",
-        "react-native-unity-webgl": "0.0.1"
+        "playfab-web-sdk": "^1.78.201207"
     }
 }

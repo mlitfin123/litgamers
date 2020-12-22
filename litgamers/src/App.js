@@ -20,7 +20,12 @@ import PublicRoute from './utils/PublicRoute';
 import PrivateOneCent from './utils/PrivateOneCent';
 import { getToken, removeUserSession, setUserSession } from './utils/Common';
 import Register from './components/RegisterUser';
-import HotSauce01 from './components/HotSauce01';
+import HotSauce01 from './components/HotSauceComponents/HotSauce01';
+import HotSauce1 from './components/HotSauceComponents/HotSauce1';
+import HotSauce5 from './components/HotSauceComponents/HotSauce5';
+import HotSauce50 from './components/HotSauceComponents/HotSauce50';
+import HotSauce05 from './components/HotSauceComponents/HotSauce05';
+import HotSauceFree from './components/HotSauceComponents/HotSauceFree';
 
 function App() {
   const [authLoading, setAuthLoading] = useState(true);
@@ -57,7 +62,12 @@ function App() {
         <Route exact path="/onecent" component={OneCent} />
         <Route exact path="/contact" component={Contact} />
         <Route exact path="/register" component={Register} />
-        <PrivateOneCent exact path="/hotsauce01" component={HotSauce01} />
+        <Route exact path="/saucefree" component={HotSauceFree} />
+        <PrivateOneCent exact path="/sauce01" component={HotSauce01} />
+        <PrivateOneCent exact path="/sauce05" component={HotSauce05} />
+        <PrivateOneCent exact path="/sauce50" component={HotSauce50} />
+        <PrivateOneCent exact path="/saucefive" component={HotSauce5} />
+        <PrivateOneCent exact path="/sauceone" component={HotSauce1} />
         <PublicRoute exact path="/login" component={Login} />
         <PrivateRoute exact path="/dashboard" component={Dashboard} />
       </Switch>

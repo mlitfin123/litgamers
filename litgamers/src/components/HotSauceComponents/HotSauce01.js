@@ -1,5 +1,5 @@
-import React, { Component, useState, useEffect} from "react";
-import '../utils/TemplateData/style.css'
+import React, { useState, useEffect} from "react";
+import '../../utils/TemplateData/style.css'
 import Unity, { UnityContext } from "react-unity-webgl";
 import {PlayFabClient} from 'playfab-sdk';
 
@@ -12,8 +12,10 @@ let unityContext = new UnityContext({
 
 export default function HotSauce01(props) {
   const [progression, setProgression] = useState(0);
+  const [leaders, setLeaderboard] = useState([]);
   useEffect(()=>{
     getBalance();
+    getLeaderboard()
     launchGame();
     verifyPayment();
     }, [])
@@ -36,7 +38,7 @@ export default function HotSauce01(props) {
           PlayFabId: "1DF75",
           Statistics:[
           {
-            StatisticName: "HotSauceDaily.50",
+            StatisticName: "HotSauceDaily",
             Value: finalScore
           }
         ]
@@ -84,23 +86,56 @@ export default function HotSauce01(props) {
           props.history.push('/onecent');
         }
       }
+
+      async function getLeaderboard(){
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        var leaderboard = {
+                StartPosition: 0,
+                StatisticName: "HotSauceDaily",
+                MaxResultsCount: 50
+            };
+        PlayFabClient.GetLeaderboard(leaderboard, function (error, result)
+                {
+                    setLeaderboard(result.data.Leaderboard);
+                    console.log(leaders)
+                });
+            }
     
-        return (
-          <main>
-              <h1 className="title">Hot Sauce Fury!</h1>
-          <div id="unity-container" class="unity-desktop">
-            <Unity unityContext={unityContext} width="960px" height="600px"/>
-              <div id="unity-loading-bar">
-                <div id="unity-logo"></div>
-                <div id="unity-progress-bar-empty">
-                  <div id="unity-progress-bar-full"></div>
+      return (
+        <main>
+            <div class="row">
+                <div className="col-1">
+                    <h2 className="title">Leaderboard</h2>
                 </div>
-              </div>
-            <div id="unity-footer">
-              <button id="unity-fullscreen-button" onClick={onFullScreen}></button>
+                <div className="col-8">
+                    <h1 className="title">Hot Sauce Fury!</h1>
+                </div>
+                <div className="col-4"></div>
             </div>
-          </div>
-      </main>
-      ) ;
-    }
-  
+            <div className="row">
+                <div className="col-2">
+                  <ol className="leaderboardList">
+                      {leaders.map((leaderMapped, index) => (
+                          <li key={`${leaderMapped.DisplayName}_${leaderMapped.StatValue}`} className="leaderboardItem">{leaderMapped.DisplayName}: {leaderMapped.StatValue}</li>
+                      ))}
+                  </ol>
+                </div>
+                <div className="col-7">
+            <div id="unity-container" class="unity-desktop">
+                <Unity unityContext={unityContext} width="960px" height="600px"/>
+                <div id="unity-loading-bar">
+                    <div id="unity-logo"></div>
+                    <div id="unity-progress-bar-empty">
+                    <div id="unity-progress-bar-full"></div>
+                    </div>
+                </div>
+                <div id="unity-footer">
+                <button id="unity-fullscreen-button" onClick={onFullScreen}></button>
+                </div>
+            </div>
+            </div>
+            </div>
+            <div className="col-3"></div>
+        </main>
+    ) ;
+}
