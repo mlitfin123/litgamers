@@ -14,6 +14,7 @@ export const getToken = () => {
 export const removeUserSession = () => {
     sessionStorage.removeItem('token');
     sessionStorage.removeItem('user');
+    sessionStorage.removeItem('balance');
     document.cookie = "user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     document.cookie = "pass=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 }

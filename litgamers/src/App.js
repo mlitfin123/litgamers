@@ -17,6 +17,7 @@ import OneCent from './components/OneCentGames';
 import OneDollar from './components/OneDollarGames';
 import PrivateRoute from './utils/PrivateRoute';
 import PublicRoute from './utils/PublicRoute';
+import PrivateOneCent from './utils/PrivateOneCent';
 import { getToken, removeUserSession, setUserSession } from './utils/Common';
 import Register from './components/RegisterUser';
 import HotSauce01 from './components/HotSauce01';
@@ -56,7 +57,7 @@ function App() {
         <Route exact path="/onecent" component={OneCent} />
         <Route exact path="/contact" component={Contact} />
         <Route exact path="/register" component={Register} />
-        <Route exact path="/hotsauce01" component={HotSauce01} />
+        <PrivateOneCent exact path="/hotsauce01" component={HotSauce01} />
         <PublicRoute exact path="/login" component={Login} />
         <PrivateRoute exact path="/dashboard" component={Dashboard} />
       </Switch>

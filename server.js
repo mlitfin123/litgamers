@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 4000;
 const app = express();
 
 const userData = {
-    name: "LocalHost"
+    name: "LocalUser"
 };
 
 app.use(cors())

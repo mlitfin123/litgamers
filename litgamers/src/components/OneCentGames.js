@@ -1,14 +1,14 @@
 import React from 'react';
 import Sidebar from './Sidebar';
 import {PlayFabClient} from 'playfab-sdk';
-import axios from 'axios';
+import { Link, Redirect } from "react-router-dom";
 
 const OneCent = () => {
     var balance;
 
     const getBalance = () => {
-        var userBalance = {
-        }
+        var userBalance = sessionStorage.getItem('balance');
+
         PlayFabClient.GetUserInventory(userBalance, function (error, result) {
             if (result != null){
                 var currentBalance = result.data.VirtualCurrency.US
@@ -25,10 +25,7 @@ const OneCent = () => {
     const launchGame = async () => {
         getBalance();
         await new Promise(resolve => setTimeout(resolve, 1000));
-        if (balance >= .01 ){
-            window.location.href ='https://litgamers-server.herokuapp.com/sauce'
-        }
-        else if (balance <= .01 ){
+        if (balance <= .01 ){
             alert("Your account is inneficient, please deposit additional funds")
         }
     }
@@ -73,8 +70,8 @@ const OneCent = () => {
                             <tr>
                             <td>
                                 <div id="sauce" className="games">
-                                    <button onClick={launchGame}><img src="..\images\Icon.PNG" alt="play the game" width="150px"></img>
-                                    <h3 className="gameLabel">Hot Sauce Fury</h3></button>
+                                    <Link to="/HotSauce01"><img src="..\images\Icon.PNG" alt="play the game" width="150px"></img>
+                                    <h3 className="gameLabel">Hot Sauce Fury</h3></Link>
                                 </div>
                             </td>
                             </tr>

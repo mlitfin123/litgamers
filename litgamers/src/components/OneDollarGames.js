@@ -1,7 +1,6 @@
 import React from 'react';
 import Sidebar from './Sidebar';
 import {PlayFabClient} from 'playfab-sdk';
-import axios from 'axios';
 
 const OneDollar = () => {
     var balance;

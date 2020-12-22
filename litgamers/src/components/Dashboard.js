@@ -20,6 +20,7 @@ function Dashboard(props) {
             if (result != null){
                 var currentBalance = result.data.VirtualCurrency.US
                 setBalance((currentBalance / 100).toFixed(2))
+                sessionStorage.setItem("balance", balance);
                 console.log(balance)
             }
             else if (result == null){
