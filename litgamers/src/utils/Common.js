@@ -10,6 +10,10 @@ export const getToken = () => {
     return sessionStorage.getItem('token') || null;
 }
 
+export const getTokenForGame = () => {
+    return sessionStorage.getItem('token') || null || alert("Please Login");
+}
+
 // remove the token and user from the session storage
 export const removeUserSession = () => {
     sessionStorage.removeItem('token');

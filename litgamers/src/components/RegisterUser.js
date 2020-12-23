@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import {PlayFabClient} from 'playfab-sdk';
 
 function Register(props) {
-    const [loading, setLoading] = useState(false);
     const username = useFormInput('');
     const password = useFormInput('');
     const display = useFormInput('');
     const [error, setError] = useState(null);
+    const [success, setSuccess] = useState(null);
 
     const playFabRegister = () => {
         const pwd = password.value;
@@ -20,27 +20,46 @@ function Register(props) {
             Password: pwd,
             RequireBothUsernameAndEmail: false
         };
-        console.log(registerRequest)
         PlayFabClient.RegisterPlayFabUser(registerRequest, function(error, response){
-            console.log(response)
+            if (response !== null) {
+                setSuccess("You have been successfully registered")
+                return(success);
+            }
+            else if (response == null) {
+                setError(error.errorMessage)
+                return(error);
+            }
         })
     }
     return(
-        <div>
-            <h2>Register User</h2><br /><br />
+        <div className="contact-form">
+            <h1 className="title">Register User</h1><br /><br />
             <div>
-                Enter Your Name<br />
-                <input id="display" type="text" {...display} autoComplete="new-password" />
+                <div className="login">
+                    Enter Your Name (must be 3 characters or more)<br />
+                </div>
+                <div className="login">
+                    <input id="display" type="text" {...display} autoComplete="new-name" placeholder="name" />
+                </div>
             </div>
             <div>
-                Enter Your Email Address<br />
-                <input id="user" type="text" {...username} autoComplete="new-password" />
+                <div className="login">
+                    Enter Your Email Address (must be a valid email address)<br />
+                </div>
+                <input id="user" type="text" {...username} autoComplete="new-email" placeholder="email" />
             </div>
             <div style={{ marginTop: 10 }}>
-                Enter Your Desired Password (must be 6 characters or more)<br />
-                <input type="password" {...password} autoComplete="new-password" />
+                <div className="login">
+                    Enter Your Desired Password (must be 6 characters or more)<br />
+                </div>
+                <input type="password" {...password} autoComplete="new-password" placeholder="password"/>
             </div>
-            <input type="button"onClick={playFabRegister} value="Register User"/>
+            {error && <><small style={{ color: 'red' }}>{error}</small><br /></>}
+            {success && <><medium style={{ color: 'yellow' }}>{success}</medium><br /></>}
+            <br />
+            <div className="login">
+                <input type="button"onClick={playFabRegister} value="Register User"/>
+            </div>
         </div>
     )
 }

@@ -15,9 +15,6 @@ import Home from './components/Home';
 import Login from './components/Login';
 import OneCent from './components/OneCentGames';
 import OneDollar from './components/OneDollarGames';
-import PrivateRoute from './utils/PrivateRoute';
-import PublicRoute from './utils/PublicRoute';
-import PrivateOneCent from './utils/PrivateOneCent';
 import { getToken, removeUserSession, setUserSession } from './utils/Common';
 import Register from './components/RegisterUser';
 import HotSauce01 from './components/HotSauceComponents/HotSauce01';
@@ -26,6 +23,14 @@ import HotSauce5 from './components/HotSauceComponents/HotSauce5';
 import HotSauce50 from './components/HotSauceComponents/HotSauce50';
 import HotSauce05 from './components/HotSauceComponents/HotSauce05';
 import HotSauceFree from './components/HotSauceComponents/HotSauceFree';
+import SpaceShooterFree from './components/SpaceShooterComponents/SpaceShooterFree';
+import PrivateRoute from './utils/PrivateRoute';
+import PublicRoute from './utils/PublicRoute';
+import PrivateOneDollar from './utils/PrivateOneDollar';
+import PrivateFiveCent from './utils/PrivateFiveCent';
+import PrivateFiftyCent from './utils/PrivateFiftyCent';
+import PrivateFiveDollar from './utils/PrivateFiveDollar';
+import PrivateOneCent from './utils/PrivateOneCent';
 
 function App() {
   const [authLoading, setAuthLoading] = useState(true);
@@ -63,11 +68,12 @@ function App() {
         <Route exact path="/contact" component={Contact} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/saucefree" component={HotSauceFree} />
+        <Route exact path="/spacefree" component={SpaceShooterFree} />
         <PrivateOneCent exact path="/sauce01" component={HotSauce01} />
-        <PrivateOneCent exact path="/sauce05" component={HotSauce05} />
-        <PrivateOneCent exact path="/sauce50" component={HotSauce50} />
-        <PrivateOneCent exact path="/saucefive" component={HotSauce5} />
-        <PrivateOneCent exact path="/sauceone" component={HotSauce1} />
+        <PrivateFiveCent exact path="/sauce05" component={HotSauce05} />
+        <PrivateFiftyCent exact path="/sauce50" component={HotSauce50} />
+        <PrivateFiveDollar exact path="/saucefive" component={HotSauce5} />
+        <PrivateOneDollar exact path="/sauceone" component={HotSauce1} />
         <PublicRoute exact path="/login" component={Login} />
         <PrivateRoute exact path="/dashboard" component={Dashboard} />
       </Switch>

@@ -216,18 +216,32 @@ function Dashboard(props) {
     
     
     return (
-        <div>
+        <div className="dashboard">
         <br></br>
-        <h4>Welcome {user.name}!</h4><br /><br />
+        <h4>Welcome to your Dashboard!</h4><br /><br />
         <h4>Your Current Balance is ${balance}</h4><br></br><br></br>
         <h5>Add Additional Funds to your account using PayPal</h5><br></br>
-        <input className="depositBTN" type="button" onClick={depositTen} value="$10" />
-        <input className="depositBTN" type="button" onClick={depositFifteen} value="$15" />
-        <input className="depositBTN" type="button" onClick={depositTwenty} value="$20" />
-        <input className="depositBTN" type="button" onClick={depositTwentyFive} value="$25" />
-        <input className="depositBTN" type="button" onClick={depositFifty} value="$50" />
-        <input className="depositBTN" type="button" onClick={depositSeventyFive} value="$75" />
-        <input className="depositBTN" type="button" onClick={depositHundred} value="$100" />
+        <div className="paymentBTN">
+            <input className="depositBTN" type="button" onClick={depositTen} value="$10" />
+        </div>
+        <div className="paymentBTN">
+            <input className="depositBTN" type="button" onClick={depositFifteen} value="$15" />
+        </div>
+        <div className="paymentBTN">
+            <input className="depositBTN" type="button" onClick={depositTwenty} value="$20" />
+        </div>
+        <div className="paymentBTN">
+            <input className="depositBTN" type="button" onClick={depositTwentyFive} value="$25" />
+        </div>
+        <div className="paymentBTN">
+            <input className="depositBTN" type="button" onClick={depositFifty} value="$50" />
+        </div>
+        <div className="paymentBTN">
+            <input className="depositBTN" type="button" onClick={depositSeventyFive} value="$75" />
+        </div>
+        <div className="paymentBTN">
+            <input className="depositBTN" type="button" onClick={depositHundred} value="$100" />
+        </div>
         <br></br>
         <br></br>
         <h5>Withdraw Funds</h5><br></br>

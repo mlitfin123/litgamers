@@ -3,8 +3,6 @@ import Sidebar from './Sidebar';
 import { Link } from "react-router-dom";
 
 const Home = () => {
-
-    const spaceshooter = 'https://litgamers-server.herokuapp.com/space'
     
     return (
         <main>
@@ -26,8 +24,8 @@ const Home = () => {
                             </td>
                             <td>
                                 <div id="space" className="games">
-                                    <a href={spaceshooter}><img src="..\images\Space_Shooter icon.png" alt="play the game" width="150px"></img>
-                                    <h3 className="gameLabel">Space Shooter</h3></a>
+                                    <Link to="/spacefree"><img src="..\images\Space_Shooter icon.png" alt="play the game" width="150px"></img>
+                                    <h3 className="gameLabel">Space Shooter</h3></Link>
                                 </div>
                             </td>
                             </tr>

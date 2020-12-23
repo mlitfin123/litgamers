@@ -15,8 +15,6 @@ function Login(props) {
         PlayFabClient.settings.titleId = "1DF75";
         const email = username.value;
         var loginRequest = {
-            // Currently, you need to look up the correct format for this object in the API-docs:
-            // https://api.playfab.com/Documentation/Client/method/LoginWithCustomID
             Email: email,
             Password: pwd,
             TitleId: PlayFabClient.settings.titleId
@@ -43,9 +41,6 @@ function Login(props) {
             } 
         });
     }
-    const register = () => {
-        <Link id="navHead" to="/register"></Link>
-    }
     
     // handle button click of login form
     const handleLogin = () => {
@@ -56,7 +51,8 @@ function Login(props) {
     
     return (
         <div>
-        <h2>Login</h2><br /><br />
+        <h1 className="title">Login</h1><br /><br />
+        <div className="contact-form">
         <div>
             Username<br />
             <input id="user" type="text" {...username} autoComplete="new-password" />
@@ -66,8 +62,13 @@ function Login(props) {
             <input type="password" {...password} autoComplete="new-password" />
         </div>
         {error && <><small style={{ color: 'red' }}>{error}</small><br /></>}<br />
-        <input type="button" value={loading ? 'Loading...' : 'Login'} onClick={handleLogin} disabled={loading} /><br />
-        <Link id="register" to="/register">Register New User</Link>
+            <div className="login">
+                <div className="login">
+                    <input type="button" value={loading ? 'Loading...' : 'Login'} onClick={handleLogin} disabled={loading} /><br />
+                </div>
+                <Link id="register" to="/register">Register New User</Link>
+                </div>
+            </div>
         </div>
     );
     }
