@@ -1,11 +1,42 @@
-import React from 'react';
+import React, { useState, useEffect }from 'react';
 import Sidebar from './Sidebar';
 import { Link } from "react-router-dom";
 
 const FiveDollar = () => {
+    const [balance, setBalance] = useState('');
+
+    useEffect(() => {
+        getBalance();
+    })
+
+    const getBalance = async () => {
+        if (sessionStorage.getItem("balance")) {
+            setBalance(sessionStorage.balance);
+            console.log(balance)
+        }
+        else {
+            setBalance(null);
+            console.log(balance)
+        }
+    }
 
     return (
         <main>
+            <header>
+                { balance !== null && (
+                    <div className="balance">
+                        <span className="balance1">Balance: ${balance}</span>
+                    </div>
+                    )
+                }
+                { balance === null && (
+                    <div className="balance">
+                        <span className="balance1">Not Logged In</span> <br></br>
+                        <span className="balance1">Balance: $0</span>
+                    </div>
+                    )
+                }
+            </header>
             <div class="row">
                 <div>
                     <Sidebar />

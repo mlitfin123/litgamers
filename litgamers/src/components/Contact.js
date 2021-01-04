@@ -1,8 +1,25 @@
-import React from 'react';
+import React, { useState, useEffect }from 'react';
 import Sidebar from './Sidebar';
 import emailjs from 'emailjs-com';
 
 const Contact = () => {
+    const [balance, setBalance] = useState('');
+
+    useEffect(() => {
+        getBalance();
+    })
+
+    const getBalance = async () => {
+        if (sessionStorage.getItem("balance")) {
+            setBalance(sessionStorage.balance);
+            console.log(balance)
+        }
+        else {
+            setBalance(null);
+            console.log(balance)
+        }
+        
+    }
 
     function sendEmail(e) {
         e.preventDefault();    //This is important, i'm not sure why, but the email won't send without it
@@ -18,6 +35,21 @@ const Contact = () => {
         }
     return (
         <main>
+            <header>
+                { balance !== null && (
+                    <div className="balance">
+                        <span className="balance1">Balance: ${balance}</span>
+                    </div>
+                    )
+                }
+                { balance === null && (
+                    <div className="balance">
+                        <span className="balance1">Not Logged In</span> <br></br>
+                        <span className="balance1">Balance: $0</span>
+                    </div>
+                    )
+                }
+            </header>
             <div class="row">
                 <div>
                     <Sidebar />

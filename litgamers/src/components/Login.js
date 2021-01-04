@@ -1,10 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect }from 'react';
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import { setUserSession } from '../utils/Common';
 import {PlayFabClient} from 'playfab-sdk';
 
 function Login(props) {
+    const [balance, setBalance] = useState('');
+
+    useEffect(() => {
+        getBalance();
+    })
+
+    const getBalance = async () => {
+        if (sessionStorage.getItem("balance")) {
+            setBalance(sessionStorage.balance);
+            console.log(balance)
+        }
+        else {
+            setBalance(null);
+            console.log(balance)
+        }
+        
+    }
     const [loading, setLoading] = useState(false);
     const username = useFormInput('');
     const password = useFormInput('');
@@ -51,6 +68,21 @@ function Login(props) {
     
     return (
         <div>
+            <header>
+                { balance !== null && (
+                    <div className="balance">
+                        <span className="balance1">Balance: ${balance}</span>
+                    </div>
+                    )
+                }
+                { balance === null && (
+                    <div className="balance">
+                        <span className="balance1">Not Logged In</span> <br></br>
+                        <span className="balance1">Balance: $0</span>
+                    </div>
+                    )
+                }
+            </header>
         <h1 className="title">Login</h1><br /><br />
         <div className="contact-form">
         <div>

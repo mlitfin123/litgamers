@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect }from 'react';
 import '../../utils/TemplateData/style.css'
 import Unity, { UnityContext } from "react-unity-webgl";
 
@@ -10,6 +10,22 @@ let unityContext = new UnityContext({
 });
 
 export default function SpaceShooterFree(props) {
+    const [balance, setBalance] = useState('');
+
+    useEffect(() => {
+        getBalance();
+    })
+
+    const getBalance = async () => {
+        if (sessionStorage.getItem("balance")) {
+            setBalance(sessionStorage.balance);
+            console.log(balance)
+        }
+        else {
+            setBalance(null);
+            console.log(balance)
+        }
+    }
     const [progression, setProgression] = useState(0);
 
     unityContext.on("progress", progressionVal => {
@@ -26,6 +42,21 @@ export default function SpaceShooterFree(props) {
     
     return (
         <main>
+            <header>
+                { balance !== null && (
+                    <div className="balance">
+                        <span className="balance1">Balance: ${balance}</span>
+                    </div>
+                    )
+                }
+                { balance === null && (
+                    <div className="balance">
+                        <span className="balance1">Not Logged In</span> <br></br>
+                        <span className="balance1">Balance: $0</span>
+                    </div>
+                    )
+                }
+            </header>
             <div class="row">
                 <div className="col-3">
                 </div>

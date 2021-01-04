@@ -13,6 +13,7 @@ let unityContext = new UnityContext({
 export default function HotSauce05(props) {
   const [progression, setProgression] = useState(0);
   const [leaders, setLeaderboard] = useState([]);
+  const [balance1, setBalance] = useState('');
   useEffect(()=>{
     getBalance();
     getLeaderboard()
@@ -51,6 +52,7 @@ export default function HotSauce05(props) {
             VirtualCurrency: "US"
           }
           PlayFabClient.SubtractUserVirtualCurrency(subtractCurrency, function (error, result){
+            sessionStorage.setItem("balance", (balance1 - .05).toFixed(2));
           })
           console.log("Leaderboard Updated!")}
           else if (result == null) {
@@ -62,13 +64,14 @@ export default function HotSauce05(props) {
     }
   );
 
-  const onFullScreen = () => {
-    unityContext.setFullscreen(true);
-    };
+    const onFullScreen = () => {
+        unityContext.setFullscreen(true);
+        };
     var balance;
 
     const getBalance = async () => {
-      balance = sessionStorage.balance;
+        balance = sessionStorage.balance;
+        setBalance(balance)
     }
     
     const launchGame = async () => {
@@ -103,6 +106,21 @@ export default function HotSauce05(props) {
     
     return (
         <main>
+            <header>
+                { balance !== null && (
+                    <div className="balance">
+                        <span className="balance1">Balance: ${balance1}</span>
+                    </div>
+                    )
+                }
+                { balance === null && (
+                    <div className="balance">
+                        <span className="balance1">Not Logged In</span> <br></br>
+                        <span className="balance1">Balance: $0</span>
+                    </div>
+                    )
+                }
+            </header>
             <div class="row">
                 <div className="col-1">
                     <h2 className="title">Leaderboard</h2>

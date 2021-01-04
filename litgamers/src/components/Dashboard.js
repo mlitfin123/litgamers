@@ -21,10 +21,9 @@ function Dashboard(props) {
                 var currentBalance = result.data.VirtualCurrency.US
                 setBalance((currentBalance / 100).toFixed(2))
                 sessionStorage.setItem("balance", balance);
-                console.log(balance)
             }
             else if (result == null){
-
+                setBalance(<medium style={{ color: 'red' }}>error retrieving balance</medium>)
             }
             }
         )
@@ -216,40 +215,57 @@ function Dashboard(props) {
     
     
     return (
-        <div className="dashboard">
-        <br></br>
-        <h4>Welcome to your Dashboard!</h4><br /><br />
-        <h4>Your Current Balance is ${balance}</h4><br></br><br></br>
-        <h5>Add Additional Funds to your account using PayPal</h5><br></br>
-        <div className="paymentBTN">
-            <input className="depositBTN" type="button" onClick={depositTen} value="$10" />
-        </div>
-        <div className="paymentBTN">
-            <input className="depositBTN" type="button" onClick={depositFifteen} value="$15" />
-        </div>
-        <div className="paymentBTN">
-            <input className="depositBTN" type="button" onClick={depositTwenty} value="$20" />
-        </div>
-        <div className="paymentBTN">
-            <input className="depositBTN" type="button" onClick={depositTwentyFive} value="$25" />
-        </div>
-        <div className="paymentBTN">
-            <input className="depositBTN" type="button" onClick={depositFifty} value="$50" />
-        </div>
-        <div className="paymentBTN">
-            <input className="depositBTN" type="button" onClick={depositSeventyFive} value="$75" />
-        </div>
-        <div className="paymentBTN">
-            <input className="depositBTN" type="button" onClick={depositHundred} value="$100" />
-        </div>
-        <br></br>
-        <br></br>
-        <h5>Withdraw Funds</h5><br></br>
-        <input type="button" onClick={handleWithdrawal} value="Request a Payment with Paypal" />
-        <br></br>
-        <br></br>
-        <input type="button" onClick={handleLogout} value="Logout" />
-        </div>
+        <main>
+            <header>
+                { balance !== null && (
+                    <div className="balance">
+                        <span className="balance1">Balance: ${balance}</span>
+                    </div>
+                    )
+                }
+                { balance === null && (
+                    <div className="balance">
+                        <span className="balance1">Not Logged In</span> <br></br>
+                        <span className="balance1">Balance: $0</span>
+                    </div>
+                    )
+                }
+            </header>
+            <div className="dashboard">
+            <br></br>
+            <h4>Welcome to your Dashboard!</h4><br /><br />
+            <h4>Your Current Balance is ${balance}</h4><br></br><br></br>
+            <h5>Add Additional Funds to your account using PayPal</h5><br></br>
+            <div className="paymentBTN">
+                <input className="depositBTN" type="button" onClick={depositTen} value="$10" />
+            </div>
+            <div className="paymentBTN">
+                <input className="depositBTN" type="button" onClick={depositFifteen} value="$15" />
+            </div>
+            <div className="paymentBTN">
+                <input className="depositBTN" type="button" onClick={depositTwenty} value="$20" />
+            </div>
+            <div className="paymentBTN">
+                <input className="depositBTN" type="button" onClick={depositTwentyFive} value="$25" />
+            </div>
+            <div className="paymentBTN">
+                <input className="depositBTN" type="button" onClick={depositFifty} value="$50" />
+            </div>
+            <div className="paymentBTN">
+                <input className="depositBTN" type="button" onClick={depositSeventyFive} value="$75" />
+            </div>
+            <div className="paymentBTN">
+                <input className="depositBTN" type="button" onClick={depositHundred} value="$100" />
+            </div>
+            <br></br>
+            <br></br>
+            <h5>Withdraw Funds</h5><br></br>
+            <input type="button" onClick={handleWithdrawal} value="Request a Payment with Paypal" />
+            <br></br>
+            <br></br>
+            <input type="button" onClick={handleLogout} value="Logout" />
+            </div>
+        </main>
     );
 }
 

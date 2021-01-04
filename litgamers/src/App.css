@@ -2,16 +2,18 @@ html{
   width: 100%;
 }
 body{
-  padding-top: 10px;
+  padding: 0;
+  margin: 0;
   background-color: #003cffa2;
   color: white;
   font-family: Arial, Helvetica, sans-serif;
 }
-main{
-  padding-top:5px;
-}
 header{
   text-align: center;
+  background-color: rgb(0, 0, 0);
+}
+.row{
+  padding-top:5px;
 }
 button {
   background-color: Transparent;
@@ -119,6 +121,7 @@ footer {
   font-weight: bold;
   border-bottom: 3px solid #5e2626;
   border-right: 3px solid #5e2626;
+  border-left: 3px solid #5e2626;
   background-color: rgb(228, 228, 228);
 }
 .nav-item:hover{
@@ -157,12 +160,12 @@ footer {
     font-size: 18px;
   }
   #banner nav .navbar-nav .nav-link {
-    color: black;
+    color: white;
     font-weight: bold;
     border-bottom: 2px solid transparent; }
   #banner nav .navbar-nav .nav-link:hover {
     border-bottom: 2px solid #5e2626; 
-    background-color: white;
+    background-color: #810202;
   }
   #banner nav .navbar-nav .nav-link.active {
     color: #cc0000;
@@ -170,3 +173,11 @@ footer {
     border-bottom: 2px solid #5e2626;
     background-color: white;
     }
+  .balance{
+    padding-bottom: 5px;
+    border-bottom: 4px solid #5e2626;
+  }
+  .balance1{
+    padding-bottom: 1px;
+    border-bottom: 2px solid white;
+  }

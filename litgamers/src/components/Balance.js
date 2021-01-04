@@ -1,7 +1,6 @@
 import React, { useState, useEffect }from 'react';
-import Sidebar from './Sidebar';
 
-const About = () => {
+const Balance = () => {
     const [balance, setBalance] = useState('');
 
     useEffect(() => {
@@ -19,8 +18,9 @@ const About = () => {
         }
         
     }
+    
+
     return (
-    <main>
         <header>
             { balance !== null && (
                 <div className="balance">
@@ -36,16 +36,7 @@ const About = () => {
                 )
             }
         </header>
-        <div class="row">
-            <div>
-                <Sidebar />
-            </div>
-            <div class="col">
-                <h1 className="title">About</h1>
-            </div>
-        </div>
-    </main>
     );
 }
 
-export default About;
+export default Balance;
