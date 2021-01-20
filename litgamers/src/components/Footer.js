@@ -45,8 +45,8 @@ const Footer = () => {
                 <Link id="navFoot" onClick={() => setActivePage('contact')} className={activePage === 'contact' ? 'nav-link active' : 'nav-link'} to="/contact">Contact</Link>
             </div>
             <div className="footer-content">
-                <p>Copyright � 2020 <b>Fit To Tech (FTT)</b>&nbsp;&nbsp; All rights reserved.</p>
-                Visit the Website <a id="navFoot" href="https://marksfolio.herokuapp.com/">FTT.com</a><br></br>
+                <p>Copyright � 2020 <b>Fit-To-Tech (FTT) Technologies</b>&nbsp;&nbsp; All rights reserved.</p>
+                Visit the Website <a id="navFoot" href="http://fittotech.net" target="_blank">fittotech.net</a><br></br>
             </div>
         </footer>
     )

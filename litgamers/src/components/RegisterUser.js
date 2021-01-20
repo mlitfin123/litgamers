@@ -33,7 +33,7 @@ function Register(props) {
     }
     return(
         <div className="contact-form">
-            <h1 className="title">Register User</h1><br /><br />
+            <h1  id="dashTitle" className="jumbotron p-4 p-md-2 text-white rounded bg-dark text-center">Register User</h1><br /><br />
             <div>
                 <div className="login">
                     Enter Your Name (must be 3 characters or more)<br />

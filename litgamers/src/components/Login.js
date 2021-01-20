@@ -83,8 +83,8 @@ function Login(props) {
                     )
                 }
             </header>
-        <h1 className="title">Login</h1><br /><br />
         <div className="contact-form">
+        <h1 id="dashTitle" className="jumbotron p-4 p-md-2 text-white rounded bg-dark text-center">Login</h1><br /><br />
         <div>
             Username<br />
             <input id="user" type="text" {...username} autoComplete="new-password" />

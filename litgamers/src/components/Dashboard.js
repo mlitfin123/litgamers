@@ -195,7 +195,7 @@ function Dashboard(props) {
         PlayFabClient.ConfirmPurchase(confirmPurchase, function (error, result) {
             console.log(result)
             if (result == null) {
-                alert("The purchase was not confirmed, if this is in result please contact us")
+                alert("The purchase was not confirmed, if this is in error please contact us")
             }
             else if (result != null){
                 PlayFabClient.AddUserVirtualCurrency(addCurrency, function (error, result) {
@@ -232,10 +232,10 @@ function Dashboard(props) {
                 }
             </header>
             <div className="dashboard">
-            <br></br>
-            <h4>Welcome to your Dashboard!</h4><br /><br />
+                <h2 id="dashTitle" className="jumbotron p-4 p-md-2 text-white rounded bg-dark text-center">Welcome to your Dashboard!</h2>
+            <div className="dashForm">
             <h4>Your Current Balance is ${balance}</h4><br></br><br></br>
-            <h5>Add Additional Funds to your account using PayPal</h5><br></br>
+            <h5 className="dashUnder">Add Additional Funds To Your Account Using PayPal</h5><br></br>
             <div className="paymentBTN">
                 <input className="depositBTN" type="button" onClick={depositTen} value="$10" />
             </div>
@@ -259,11 +259,12 @@ function Dashboard(props) {
             </div>
             <br></br>
             <br></br>
-            <h5>Withdraw Funds</h5><br></br>
+            <h5 className="dashUnder">Withdraw Funds Using Your PayPal Email</h5><br></br>
             <input type="button" onClick={handleWithdrawal} value="Request a Payment with Paypal" />
             <br></br>
             <br></br>
             <input type="button" onClick={handleLogout} value="Logout" />
+            </div>
             </div>
         </main>
     );

@@ -39,7 +39,7 @@ return (
                     <Link id="navHead" onClick={() => setActivePage('home')} className={activePage === 'home' ? 'nav-link active' : 'nav-link'} to="/">Home</Link>
                 </li>
                 <li className="nav-item">
-                    <Link id="navHead" onClick={() => setActivePage('about')} className={activePage === 'about' ? 'nav-link active' : 'nav-link'} to="/about">About</Link>
+                    <Link id="navHead" onClick={() => setActivePage('about')} className={activePage === 'about' ? 'nav-link active' : 'nav-link'} to="/about">How it Works</Link>
                 </li>
                 <li className="nav-item">
                     <Link id="navHead" onClick={() => setActivePage('contact')} className={activePage === 'contact' ? 'nav-link active' : 'nav-link'} to="/contact">Contact</Link>
