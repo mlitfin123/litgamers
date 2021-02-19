@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { getUser, removeUserSession } from '../utils/Common';
 import {PlayFabClient} from 'playfab-sdk';
+import emailjs from 'emailjs-com';
 
 function Dashboard(props) {
     const [balance, setBalance] = useState('');
+    const [username, setUsername] = useState('');
     const user = getUser();
     var orderId;
     var confirmURL;
@@ -11,6 +13,7 @@ function Dashboard(props) {
 
     useEffect(() => {
         getBalance();
+        getUserName();
     })
 
     const getBalance = () => {
@@ -24,6 +27,25 @@ function Dashboard(props) {
             }
             else if (result == null){
                 setBalance(<medium style={{ color: 'red' }}>error retrieving balance</medium>)
+            }
+            }
+        )
+    }
+    const zeroBalance = () => {
+        var removeBalance = {
+            Amount: Number(balance * 100),
+            VirtualCurrency: "US"
+        }
+        PlayFabClient.SubtractUserVirtualCurrency(removeBalance, async function (error, result) {
+            await new Promise(resolve => setTimeout(resolve, 500));
+            if (result != null){
+                // console.log(result)
+                alert("You will recieve your payment shortly!")
+                window.location.reload();
+            }
+            else if (result == null){
+                alert("Something went wrong, please try again");
+                // window.location.reload();
             }
             }
         )
@@ -204,9 +226,21 @@ function Dashboard(props) {
             }
         })
     }
-    const handleWithdrawal = () => {
-
+    const getUserName = () => {
+        setUsername((sessionStorage.getItem("user")).replace(/['"]+/g, ''));
     }
+
+    const handleWithdrawal = (e) => {
+        e.preventDefault();
+    
+        emailjs.sendForm('service_s2e1vlm', 'template_nc6k0qa', e.target, 'user_F50HIjhG7V6zUkMAsw8UL')
+            .then((result) => {
+                console.log(result.text);
+                zeroBalance();
+            }, (error) => {
+                console.log(error.text);
+            });
+        }
     // handle click event of logout button
     const handleLogout = () => {
         removeUserSession();
@@ -234,6 +268,7 @@ function Dashboard(props) {
             <div className="dashboard">
                 <h2 id="dashTitle" className="jumbotron p-4 p-md-2 text-white rounded bg-dark text-center">Welcome to your Dashboard!</h2>
             <div className="dashForm">
+            <h4>Welcome {username}!!</h4><br></br>
             <h4>Your Current Balance is ${balance}</h4><br></br><br></br>
             <h5 className="dashUnder">Add Additional Funds To Your Account Using PayPal</h5><br></br>
             <div className="paymentBTN">
@@ -260,9 +295,27 @@ function Dashboard(props) {
             <br></br>
             <br></br>
             <h5 className="dashUnder">Withdraw Funds Using Your PayPal Email</h5><br></br>
-            <input type="button" onClick={handleWithdrawal} value="Request a Payment with Paypal" />
-            <br></br>
-            <br></br>
+            <form className="withdraw-form" onSubmit={handleWithdrawal}>
+                        <div className="form-group">
+                            <input type="hidden" name="contact_number" />
+                            <input type="hidden" name="from_name" placeholder="Name" value={username}/>
+                        </div>
+                        <label>Enter the email connected to your paypal account:</label>
+                        <div className="form-group">
+                            <input type="email" name="from_email" placeholder="Email"  required/>
+                        </div>
+                        <div className="form-group">
+                            <input type="hidden" name="subject" placeholder="Subject" value="Withdraw Request"/>
+                        </div>
+                        <div className="form-group">
+                            <input type="hidden" name="html_message" placeholder="Message" value={balance}/>
+                        </div>
+                        <div className="form-group">
+                            <input type="submit" value="Request a Payment with Paypal" />
+                        </div>
+                    </form>
+                <br></br>
+                <br></br>
             <input type="button" onClick={handleLogout} value="Logout" />
             </div>
             </div>

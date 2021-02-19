@@ -22,13 +22,12 @@ const Contact = () => {
     }
 
     function sendEmail(e) {
-        e.preventDefault();    //This is important, i'm not sure why, but the email won't send without it
+        e.preventDefault();
     
         emailjs.sendForm('service_s2e1vlm', 'template_ns2ubq2', e.target, 'user_F50HIjhG7V6zUkMAsw8UL')
             .then((result) => {
                 console.log(result.text);
                 alert("Thanks for your email, we will respond shortly")
-                window.location.reload()  //This is if you still want the page to reload (since e.preventDefault() cancelled that behavior) 
             }, (error) => {
                 console.log(error.text);
             });
