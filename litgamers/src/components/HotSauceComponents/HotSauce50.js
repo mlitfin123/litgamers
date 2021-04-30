@@ -18,7 +18,6 @@ export default function HotSauce50(props) {
         getBalance();
         getLeaderboard()
         launchGame();
-        verifyPayment();
     }, [])
 
   unityContext.on("progress", progressionVal => {
@@ -79,6 +78,9 @@ export default function HotSauce50(props) {
         if (balance <= .50 ){
             alert("Your account is inneficient, please deposit additional funds")
             props.history.push('/fiftycent');
+        }
+        else {
+          verifyPayment();
         }
       }
       

@@ -213,8 +213,8 @@ function Dashboard(props) {
         var confirmPurchase = ({
             OrderId: orderId
         });
-        window.confirm("Select Ok once you have made your purchase to confirm")
         PlayFabClient.ConfirmPurchase(confirmPurchase, function (error, result) {
+            window.confirm("Select Ok once you have made your purchase to confirm")
             console.log(result)
             if (result == null) {
                 alert("The purchase was not confirmed, if this is in error please contact us")

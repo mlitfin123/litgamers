@@ -92,6 +92,7 @@ app.get('/verifyToken', function (req, res) {
 // Serve static content for the app from the "public" directory in the application directory.
 app.use(express.static("games/HotSauce"));
 app.use(express.static("games/SpaceShooters"));
+app.use(express.static("games/CrazyPong"));
 
 
 router.get('/sauce',function(req,res){
@@ -116,6 +117,30 @@ router.get('/sauceFive',function(req,res){
 });
 router.get('/sauceFree',function(req,res){
     res.sendFile(path.join(__dirname+'/games/HotSauce/indexFree.html'));
+    //__dirname : It will resolve to your project folder.
+});
+router.get('/pong',function(req,res){
+    res.sendFile(path.join(__dirname+'/games/CrazyPong/index.html'));
+    //__dirname : It will resolve to your project folder.
+});
+router.get('/pong5',function(req,res){
+    res.sendFile(path.join(__dirname+'/games/CrazyPong/indexFivety.html'));
+    //__dirname : It will resolve to your project folder.
+});
+router.get('/pong50',function(req,res){
+    res.sendFile(path.join(__dirname+'/games/CrazyPong/indexFifty.html'));
+    //__dirname : It will resolve to your project folder.
+});
+router.get('/pongOne',function(req,res){
+    res.sendFile(path.join(__dirname+'/games/CrazyPong/indexOne.html'));
+    //__dirname : It will resolve to your project folder.
+});
+router.get('/pongFive',function(req,res){
+    res.sendFile(path.join(__dirname+'/games/CrazyPong/indexFive.html'));
+    //__dirname : It will resolve to your project folder.
+});
+router.get('/pongFree',function(req,res){
+    res.sendFile(path.join(__dirname+'/games/CrazyPong/indexFree.html'));
     //__dirname : It will resolve to your project folder.
 });
 router.get('/space',function(req,res){

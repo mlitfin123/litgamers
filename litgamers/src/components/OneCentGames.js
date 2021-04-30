@@ -80,6 +80,12 @@ const OneCent = () => {
                                     <h3 className="gameLabel">Hot Sauce Fury</h3></Link>
                                 </div>
                             </td>
+                            <td>
+                                <div id="pong" className="games">
+                                    <Link to="/pong01"><img src="..\images\pong_icon.PNG" alt="play the game" width="150px"></img>
+                                    <h3 className="gameLabel">Crazy Pong</h3></Link>
+                                </div>
+                            </td>
                             </tr>
                             <tr>
                             </tr>

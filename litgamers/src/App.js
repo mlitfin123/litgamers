@@ -31,6 +31,12 @@ import PrivateFiveCent from './utils/PrivateFiveCent';
 import PrivateFiftyCent from './utils/PrivateFiftyCent';
 import PrivateFiveDollar from './utils/PrivateFiveDollar';
 import PrivateOneCent from './utils/PrivateOneCent';
+import CrazyPongFree from './components/CrazyPongComponents/CrazyPongFree';
+import CrazyPong01 from './components/CrazyPongComponents/CrazyPong01';
+import CrazyPong05 from './components/CrazyPongComponents/CrazyPong05';
+import CrazyPong50 from './components/CrazyPongComponents/CrazyPong50';
+import CrazyPong5 from './components/CrazyPongComponents/CrazyPong5';
+import CrazyPong1 from './components/CrazyPongComponents/CrazyPong1';
 
 function App() {
   const [authLoading, setAuthLoading] = useState(true);
@@ -74,6 +80,12 @@ function App() {
         <PrivateFiftyCent exact path="/sauce50" component={HotSauce50} />
         <PrivateFiveDollar exact path="/saucefive" component={HotSauce5} />
         <PrivateOneDollar exact path="/sauceone" component={HotSauce1} />
+        <Route exact path="/pongfree" component={CrazyPongFree} />
+        <PrivateOneCent exact path="/pong01" component={CrazyPong01} />
+        <PrivateFiveCent exact path="/pong05" component={CrazyPong05} />
+        <PrivateFiftyCent exact path="/pong50" component={CrazyPong50} />
+        <PrivateFiveDollar exact path="/pongfive" component={CrazyPong5} />
+        <PrivateOneDollar exact path="/pongone" component={CrazyPong1} />
         <PublicRoute exact path="/login" component={Login} />
         <PrivateRoute exact path="/dashboard" component={Dashboard} />
       </Switch>
