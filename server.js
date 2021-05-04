@@ -42,12 +42,7 @@ const userData = {
     name: "LocalUser"
 };
 
-var corsOptions = {
-    "Access-Control-Allow-Origin": 'https://litgamers.org',
-    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
-    "optionsSuccessStatus": 200 
-    }
-app.use(cors(corsOptions))
+app.use(cors({origin: 'https://litgamers.org'}))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
