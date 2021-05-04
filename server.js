@@ -43,8 +43,9 @@ const userData = {
 };
 
 var corsOptions = {
-    origin: '*',
-    optionsSuccessStatus: 200 
+    "origin": 'https://litgamers.org',
+    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+    "optionsSuccessStatus": 200 
     }
 app.use(cors(corsOptions))
 app.use(bodyParser.json());
