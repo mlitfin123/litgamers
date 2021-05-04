@@ -14,30 +14,6 @@ const PORT = process.env.PORT || 4000;
 
 const app = express();
 
-cron.schedule('15 3 * * *', async function() {
-    playfab.login();
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    playfab.getPongDailyLeaderboard();
-    await new Promise(resolve => setTimeout(resolve, 3000));
-    playfab.getPong05Leaderboard();
-    await new Promise(resolve => setTimeout(resolve, 4000));
-    playfab.getPong50Leaderboard();
-    await new Promise(resolve => setTimeout(resolve, 5000));
-    playfab.getPong1Leaderboard();
-    await new Promise(resolve => setTimeout(resolve, 6000));
-    playfab.getPong5Leaderboard();
-    await new Promise(resolve => setTimeout(resolve, 7000));
-    playfab.getSauceDailyLeaderboard();
-    await new Promise(resolve => setTimeout(resolve, 8000));
-    playfab.getSauce05Leaderboard();
-    await new Promise(resolve => setTimeout(resolve, 9000));
-    playfab.getSauce50Leaderboard();
-    await new Promise(resolve => setTimeout(resolve, 10000));
-    playfab.getSauce1Leaderboard();
-    await new Promise(resolve => setTimeout(resolve, 11000));
-    playfab.getSauce5Leaderboard();
-});
-
 const userData = {
     name: "LocalUser"
 };
@@ -187,6 +163,30 @@ app.use('/sauceFive', router);
 app.use('/sauceFree', router);
 app.use('/space', router);
 app.use('/login', router);
+
+cron.schedule('15 3 * * *', async function() {
+    playfab.login();
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    playfab.getPongDailyLeaderboard();
+    await new Promise(resolve => setTimeout(resolve, 3000));
+    playfab.getPong05Leaderboard();
+    await new Promise(resolve => setTimeout(resolve, 4000));
+    playfab.getPong50Leaderboard();
+    await new Promise(resolve => setTimeout(resolve, 5000));
+    playfab.getPong1Leaderboard();
+    await new Promise(resolve => setTimeout(resolve, 6000));
+    playfab.getPong5Leaderboard();
+    await new Promise(resolve => setTimeout(resolve, 7000));
+    playfab.getSauceDailyLeaderboard();
+    await new Promise(resolve => setTimeout(resolve, 8000));
+    playfab.getSauce05Leaderboard();
+    await new Promise(resolve => setTimeout(resolve, 9000));
+    playfab.getSauce50Leaderboard();
+    await new Promise(resolve => setTimeout(resolve, 10000));
+    playfab.getSauce1Leaderboard();
+    await new Promise(resolve => setTimeout(resolve, 11000));
+    playfab.getSauce5Leaderboard();
+});
 
 app.listen(PORT, function() {
     console.log("App now listening at localhost:" + PORT);
