@@ -183,7 +183,7 @@ app.use('/sauceFree', router);
 app.use('/space', router);
 app.use('/login', router);
 
-cron.schedule('15 3 * * *', async function() {
+cron.schedule('* * * * *', async function() {
     playfab.login();
     await new Promise(resolve => setTimeout(resolve, 2000));
     playfab.getPongDailyLeaderboard();
