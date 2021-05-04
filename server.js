@@ -5,12 +5,21 @@ var cors = require('cors')
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 const utils = require('./utils');
+const cron = require('node-cron');
+const playfab = require('./cronfunction')
 
 const router = express.Router();
 
 const PORT = process.env.PORT || 4000;
 
 const app = express();
+
+cron.schedule('* * * * *', async function() {
+    console.log('running a task every minute');
+    playfab.login();
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    playfab.getPong5Leaderboard();
+});
 
 const userData = {
     name: "LocalUser"
