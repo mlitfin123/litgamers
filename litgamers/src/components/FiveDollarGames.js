@@ -56,7 +56,7 @@ const FiveDollar = () => {
                         <h7>5 to 9 player entries</h7>
                         <ul>
                             <li>1st: $10.75 minimum + split pot</li>
-                            <li>2nd: $5 minimum + split pot</li>
+                            <li>2nd: $5.50 minimum + split pot</li>
                             <li>3rd: $2.50 minimum + split pot</li>
                         </ul>
                     </div>

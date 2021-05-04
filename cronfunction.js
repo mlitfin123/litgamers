@@ -16,8 +16,8 @@ function login(){
 function getPongDailyLeaderboard(){
     var leaderboard = {
             StartPosition: 0,
-            StatisticName: "CrazyPongDaily",
-            MaxResultsCount: 50
+            StatisticName: "CrazyPongDaily"
+            
         };
     playfab.PlayFabClient.GetLeaderboard(leaderboard, async function (error, result)
         {
@@ -29,7 +29,19 @@ function getPongDailyLeaderboard(){
             // console.log(pongDailyLeaderboard.length)
             console.log(total)
             await new Promise(resolve => setTimeout(resolve, 2000));
-            if (pongDailyLeaderboard.length >= 1 && pongDailyLeaderboard.length <= 4) {
+            if (pongDailyLeaderboard.length == 1) {
+                var firstPlace = {
+                    Amount: 2,
+                    PlayFabId: pongDailyLeaderboard[0].PlayFabId,
+                    VirtualCurrency: "US"
+                };
+                playfab.PlayFabAdmin.AddUserVirtualCurrency(firstPlace, function (error, result)
+                {
+                    console.log("1st")
+                    console.log(result)
+                })
+            }
+            else if (pongDailyLeaderboard.length >= 2 && pongDailyLeaderboard.length <= 4) {
             var firstPlace = {
                 Amount: Math.ceil((total * .55) * 100),
                 PlayFabId: pongDailyLeaderboard[0].PlayFabId,
@@ -37,11 +49,9 @@ function getPongDailyLeaderboard(){
             };
             playfab.PlayFabAdmin.AddUserVirtualCurrency(firstPlace, function (error, result)
             {
-                console.log(firstPlace)
                 console.log("1st")
                 console.log(result)
             })
-            if (pongDailyLeaderboard.length >= 2 && pongDailyLeaderboard.length <= 4) {
             var secondPlace = {
                 Amount: Math.ceil((total * .20) * 100),
                 PlayFabId: pongDailyLeaderboard[1].PlayFabId,
@@ -56,20 +66,19 @@ function getPongDailyLeaderboard(){
                 console.log(result)
             })
         }
-        }
         else if (pongDailyLeaderboard.length >= 5 && pongDailyLeaderboard.length < 10) {
             var firstPlace = {
-                Amount: Math.ceil((total * .44 ) * 100),
+                Amount: Math.ceil((total * .43 ) * 100),
                 PlayFabId: pongDailyLeaderboard[0].PlayFabId,
                 VirtualCurrency: "US"
             };
             var secondPlace = {
-                Amount: Math.ceil((total * .24 ) * 100),
+                Amount: Math.ceil((total * .22 ) * 100),
                 PlayFabId: pongDailyLeaderboard[1].PlayFabId,
                 VirtualCurrency: "US"
             };
             var thirdPlace = {
-                Amount: Math.ceil((total * .12 ) * 100),
+                Amount: Math.ceil((total * .10 ) * 100),
                 PlayFabId: pongDailyLeaderboard[2].PlayFabId,
                 VirtualCurrency: "US"
             };
@@ -93,7 +102,7 @@ function getPongDailyLeaderboard(){
         }
         else if (pongDailyLeaderboard.length >= 10 ) {
             var firstPlace = {
-                Amount: Math.ceil((total * .26 ) * 100),
+                Amount: Math.ceil((total * .25 ) * 100),
                 PlayFabId: pongDailyLeaderboard[0].PlayFabId,
                 VirtualCurrency: "US"
             };
@@ -103,7 +112,7 @@ function getPongDailyLeaderboard(){
                 VirtualCurrency: "US"
             };
             var thirdPlace = {
-                Amount: Math.ceil((total * .16 ) * 100),
+                Amount: Math.ceil((total * .15 ) * 100),
                 PlayFabId: pongDailyLeaderboard[2].PlayFabId,
                 VirtualCurrency: "US"
             };
@@ -113,7 +122,7 @@ function getPongDailyLeaderboard(){
                 VirtualCurrency: "US"
             };
             var fifthPlace = {
-                Amount: Math.ceil((total * .06 ) * 100),
+                Amount: Math.ceil((total * .05 ) * 100),
                 PlayFabId: pongDailyLeaderboard[4].PlayFabId,
                 VirtualCurrency: "US"
             };
@@ -152,8 +161,8 @@ function getPongDailyLeaderboard(){
 function getPong05Leaderboard(){
     var leaderboard = {
             StartPosition: 0,
-            StatisticName: "CrazyPongDaily.05",
-            MaxResultsCount: 50
+            StatisticName: "CrazyPongDaily.05"
+            
         };
     playfab.PlayFabClient.GetLeaderboard(leaderboard, async function (error, result)
         {
@@ -165,7 +174,19 @@ function getPong05Leaderboard(){
             // console.log(pong05Leaderboard.length)
             // console.log(total)
             await new Promise(resolve => setTimeout(resolve, 2000));
-            if (pong05Leaderboard.length >= 1 && pong05Leaderboard.length <= 4) {
+            if (pongDailyLeaderboard.length == 1) {
+                var firstPlace = {
+                    Amount: 6,
+                    PlayFabId: pongDailyLeaderboard[0].PlayFabId,
+                    VirtualCurrency: "US"
+                };
+                playfab.PlayFabAdmin.AddUserVirtualCurrency(firstPlace, function (error, result)
+                {
+                    console.log("1st")
+                    console.log(result)
+                })
+            }
+            else if (pong05Leaderboard.length >= 2 && pong05Leaderboard.length <= 4) {
             var firstPlace = {
                 Amount: Math.ceil((total05 * .55) * 100),
                 PlayFabId: pong05Leaderboard[0].PlayFabId,
@@ -176,35 +197,33 @@ function getPong05Leaderboard(){
                 console.log("1st")
                 console.log(result)
             })
-            if (pong05Leaderboard.length >= 2 && pong05Leaderboard.length <= 4) {
-                var secondPlace = {
-                    Amount: Math.ceil((total05 * .20) * 100),
-                    PlayFabId: pong05Leaderboard[1].PlayFabId,
-                    VirtualCurrency: "US"
-                };
-                // console.log(firstPlace)
-                // console.log(secondPlace)
-                await new Promise(resolve => setTimeout(resolve, 2000));
-                playfab.PlayFabAdmin.AddUserVirtualCurrency(secondPlace, function (error, result)
-                {
-                    console.log("2nd")
-                    console.log(result)
-                })
-            }
+            var secondPlace = {
+                Amount: Math.ceil((total05 * .20) * 100),
+                PlayFabId: pong05Leaderboard[1].PlayFabId,
+                VirtualCurrency: "US"
+            };
+            // console.log(firstPlace)
+            // console.log(secondPlace)
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            playfab.PlayFabAdmin.AddUserVirtualCurrency(secondPlace, function (error, result)
+            {
+                console.log("2nd")
+                console.log(result)
+            })
         }
         else if (pong05Leaderboard.length >= 5 && pong05Leaderboard.length < 10) {
             var firstPlace = {
-                Amount: Math.ceil((total05 * .44 ) * 100),
+                Amount: Math.ceil((total05 * .43 ) * 100),
                 PlayFabId: pong05Leaderboard[0].PlayFabId,
                 VirtualCurrency: "US"
             };
             var secondPlace = {
-                Amount: Math.ceil((total05 * .24 ) * 100),
+                Amount: Math.ceil((total05 * .22 ) * 100),
                 PlayFabId: pong05Leaderboard[1].PlayFabId,
                 VirtualCurrency: "US"
             };
             var thirdPlace = {
-                Amount: Math.ceil((total05 * .12 ) * 100),
+                Amount: Math.ceil((total05 * .10 ) * 100),
                 PlayFabId: pong05Leaderboard[2].PlayFabId,
                 VirtualCurrency: "US"
             };
@@ -228,7 +247,7 @@ function getPong05Leaderboard(){
         }
         else if (pong05Leaderboard.length >= 10 ) {
             var firstPlace = {
-                Amount: Math.ceil((total05 * .26 ) * 100),
+                Amount: Math.ceil((total05 * .25 ) * 100),
                 PlayFabId: pong05Leaderboard[0].PlayFabId,
                 VirtualCurrency: "US"
             };
@@ -238,7 +257,7 @@ function getPong05Leaderboard(){
                 VirtualCurrency: "US"
             };
             var thirdPlace = {
-                Amount: Math.ceil((total05 * .16 ) * 100),
+                Amount: Math.ceil((total05 * .15 ) * 100),
                 PlayFabId: pong05Leaderboard[2].PlayFabId,
                 VirtualCurrency: "US"
             };
@@ -248,7 +267,7 @@ function getPong05Leaderboard(){
                 VirtualCurrency: "US"
             };
             var fifthPlace = {
-                Amount: Math.ceil((total05 * .06 ) * 100),
+                Amount: Math.ceil((total05 * .05 ) * 100),
                 PlayFabId: pong05Leaderboard[4].PlayFabId,
                 VirtualCurrency: "US"
             };
@@ -287,8 +306,8 @@ function getPong05Leaderboard(){
 function getPong50Leaderboard(){
     var leaderboard = {
             StartPosition: 0,
-            StatisticName: "CrazyPongDaily.50",
-            MaxResultsCount: 50
+            StatisticName: "CrazyPongDaily.50"
+            
         };
     playfab.PlayFabClient.GetLeaderboard(leaderboard, async function (error, result)
         {
@@ -300,7 +319,19 @@ function getPong50Leaderboard(){
             // console.log(pong50Leaderboard.length)
             // console.log(total)
             await new Promise(resolve => setTimeout(resolve, 2000));
-            if (pong50Leaderboard.length >= 1 && pong50Leaderboard.length <= 4) {
+            if (pongDailyLeaderboard.length == 1) {
+                var firstPlace = {
+                    Amount: 55,
+                    PlayFabId: pongDailyLeaderboard[0].PlayFabId,
+                    VirtualCurrency: "US"
+                };
+                playfab.PlayFabAdmin.AddUserVirtualCurrency(firstPlace, function (error, result)
+                {
+                    console.log("1st")
+                    console.log(result)
+                })
+            }
+            if (pong50Leaderboard.length >= 2 && pong50Leaderboard.length <= 4) {
             var firstPlace = {
                 Amount: Math.ceil((total50 * .55) * 100),
                 PlayFabId: pong50Leaderboard[0].PlayFabId,
@@ -311,35 +342,33 @@ function getPong50Leaderboard(){
                 console.log("1st")
                 console.log(result)
             })
-            if (pong50Leaderboard.length >= 2 && pong50Leaderboard.length <= 4) {
-                var secondPlace = {
-                    Amount: Math.ceil((total50 * .20) * 100),
-                    PlayFabId: pong50Leaderboard[1].PlayFabId,
-                    VirtualCurrency: "US"
-                };
-                // console.log(firstPlace)
-                // console.log(secondPlace)
-                await new Promise(resolve => setTimeout(resolve, 2000));
-                playfab.PlayFabAdmin.AddUserVirtualCurrency(secondPlace, function (error, result)
-                {
-                    console.log("2nd")
-                    console.log(result)
-                })
-            }
+            var secondPlace = {
+                Amount: Math.ceil((total50 * .20) * 100),
+                PlayFabId: pong50Leaderboard[1].PlayFabId,
+                VirtualCurrency: "US"
+            };
+            // console.log(firstPlace)
+            // console.log(secondPlace)
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            playfab.PlayFabAdmin.AddUserVirtualCurrency(secondPlace, function (error, result)
+            {
+                console.log("2nd")
+                console.log(result)
+            })
         }
         else if (pong50Leaderboard.length >= 5 && pong50Leaderboard.length < 10) {
             var firstPlace = {
-                Amount: Math.ceil((total50 * .44 ) * 100),
+                Amount: Math.ceil((total50 * .43 ) * 100),
                 PlayFabId: pong50Leaderboard[0].PlayFabId,
                 VirtualCurrency: "US"
             };
             var secondPlace = {
-                Amount: Math.ceil((total50 * .24 ) * 100),
+                Amount: Math.ceil((total50 * .22 ) * 100),
                 PlayFabId: pong50Leaderboard[1].PlayFabId,
                 VirtualCurrency: "US"
             };
             var thirdPlace = {
-                Amount: Math.ceil((total50 * .12 ) * 100),
+                Amount: Math.ceil((total50 * .10 ) * 100),
                 PlayFabId: pong50Leaderboard[2].PlayFabId,
                 VirtualCurrency: "US"
             };
@@ -363,7 +392,7 @@ function getPong50Leaderboard(){
         }
         else if (pong50Leaderboard.length >= 10 ) {
             var firstPlace = {
-                Amount: Math.ceil((total50 * .26 ) * 100),
+                Amount: Math.ceil((total50 * .25 ) * 100),
                 PlayFabId: pong50Leaderboard[0].PlayFabId,
                 VirtualCurrency: "US"
             };
@@ -373,7 +402,7 @@ function getPong50Leaderboard(){
                 VirtualCurrency: "US"
             };
             var thirdPlace = {
-                Amount: Math.ceil((total50 * .16 ) * 100),
+                Amount: Math.ceil((total50 * .15 ) * 100),
                 PlayFabId: pong50Leaderboard[2].PlayFabId,
                 VirtualCurrency: "US"
             };
@@ -383,7 +412,7 @@ function getPong50Leaderboard(){
                 VirtualCurrency: "US"
             };
             var fifthPlace = {
-                Amount: Math.ceil((total50 * .06 ) * 100),
+                Amount: Math.ceil((total50 * .05 ) * 100),
                 PlayFabId: pong50Leaderboard[4].PlayFabId,
                 VirtualCurrency: "US"
             };
@@ -422,8 +451,8 @@ function getPong50Leaderboard(){
 function getPong1Leaderboard(){
     var leaderboard = {
             StartPosition: 0,
-            StatisticName: "CrazyPongDaily1",
-            MaxResultsCount: 50
+            StatisticName: "CrazyPongDaily1"
+            
         };
     playfab.PlayFabClient.GetLeaderboard(leaderboard, async function (error, result)
         {
@@ -435,7 +464,19 @@ function getPong1Leaderboard(){
             // console.log(pong1Leaderboard.length)
             // console.log(total)
             await new Promise(resolve => setTimeout(resolve, 2000));
-            if (pong1Leaderboard.length >= 1 && pong1Leaderboard.length <= 4) {
+            if (pongDailyLeaderboard.length == 1) {
+                var firstPlace = {
+                    Amount: 110,
+                    PlayFabId: pongDailyLeaderboard[0].PlayFabId,
+                    VirtualCurrency: "US"
+                };
+                playfab.PlayFabAdmin.AddUserVirtualCurrency(firstPlace, function (error, result)
+                {
+                    console.log("1st")
+                    console.log(result)
+                })
+            }
+            else if (pong1Leaderboard.length >= 2 && pong1Leaderboard.length <= 4) {
             var firstPlace = {
                 Amount: Math.ceil((total1 * .55) * 100),
                 PlayFabId: pong1Leaderboard[0].PlayFabId,
@@ -446,36 +487,34 @@ function getPong1Leaderboard(){
                 console.log("1st")
                 console.log(result)
             })
-            if (pong1Leaderboard.length >= 2 && pong1Leaderboard.length <= 4) {
-                var secondPlace = {
-                    Amount: Math.ceil((total1 * .20) * 100),
-                    PlayFabId: pong1Leaderboard[1].PlayFabId,
-                    VirtualCurrency: "US"
-                };
-                // console.log(firstPlace)
-                // console.log(secondPlace)
+            var secondPlace = {
+                Amount: Math.ceil((total1 * .20) * 100),
+                PlayFabId: pong1Leaderboard[1].PlayFabId,
+                VirtualCurrency: "US"
+            };
+            // console.log(firstPlace)
+            // console.log(secondPlace)
 
-                await new Promise(resolve => setTimeout(resolve, 2000));
-                playfab.PlayFabAdmin.AddUserVirtualCurrency(secondPlace, function (error, result)
-                {
-                    console.log("2nd")
-                    console.log(result)
-                })
-            }
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            playfab.PlayFabAdmin.AddUserVirtualCurrency(secondPlace, function (error, result)
+            {
+                console.log("2nd")
+                console.log(result)
+            })
         }
         else if (pong1Leaderboard.length >= 5 && pong1Leaderboard.length < 10) {
             var firstPlace = {
-                Amount: Math.ceil((total1 * .44 ) * 100),
+                Amount: Math.ceil((total1 * .43 ) * 100),
                 PlayFabId: pong1Leaderboard[0].PlayFabId,
                 VirtualCurrency: "US"
             };
             var secondPlace = {
-                Amount: Math.ceil((total1 * .24 ) * 100),
+                Amount: Math.ceil((total1 * .22 ) * 100),
                 PlayFabId: pong1Leaderboard[1].PlayFabId,
                 VirtualCurrency: "US"
             };
             var thirdPlace = {
-                Amount: Math.ceil((total1 * .12 ) * 100),
+                Amount: Math.ceil((total1 * .10 ) * 100),
                 PlayFabId: pong1Leaderboard[2].PlayFabId,
                 VirtualCurrency: "US"
             };
@@ -499,7 +538,7 @@ function getPong1Leaderboard(){
         }
         else if (pong1Leaderboard.length >= 10 ) {
             var firstPlace = {
-                Amount: Math.ceil((total1 * .26 ) * 100),
+                Amount: Math.ceil((total1 * .25 ) * 100),
                 PlayFabId: pong1Leaderboard[0].PlayFabId,
                 VirtualCurrency: "US"
             };
@@ -509,7 +548,7 @@ function getPong1Leaderboard(){
                 VirtualCurrency: "US"
             };
             var thirdPlace = {
-                Amount: Math.ceil((total1 * .16 ) * 100),
+                Amount: Math.ceil((total1 * .15 ) * 100),
                 PlayFabId: pong1Leaderboard[2].PlayFabId,
                 VirtualCurrency: "US"
             };
@@ -519,7 +558,7 @@ function getPong1Leaderboard(){
                 VirtualCurrency: "US"
             };
             var fifthPlace = {
-                Amount: Math.ceil((total1 * .06 ) * 100),
+                Amount: Math.ceil((total1 * .05 ) * 100),
                 PlayFabId: pong1Leaderboard[4].PlayFabId,
                 VirtualCurrency: "US"
             };
@@ -558,8 +597,8 @@ function getPong1Leaderboard(){
 function getPong5Leaderboard(){
     var leaderboard = {
             StartPosition: 0,
-            StatisticName: "CrazyPongDaily5",
-            MaxResultsCount: 50
+            StatisticName: "CrazyPongDaily5"
+            
         };
     playfab.PlayFabClient.GetLeaderboard(leaderboard, async function (error, result)
         {
@@ -571,7 +610,19 @@ function getPong5Leaderboard(){
             // console.log(pong5Leaderboard.length)
             // console.log(total)
             await new Promise(resolve => setTimeout(resolve, 2000));
-            if (pong5Leaderboard.length >= 1 && pong5Leaderboard.length <= 4) {
+            if (pongDailyLeaderboard.length == 1) {
+                var firstPlace = {
+                    Amount: 550,
+                    PlayFabId: pongDailyLeaderboard[0].PlayFabId,
+                    VirtualCurrency: "US"
+                };
+                playfab.PlayFabAdmin.AddUserVirtualCurrency(firstPlace, function (error, result)
+                {
+                    console.log("1st")
+                    console.log(result)
+                })
+            }
+            else if (pong5Leaderboard.length >= 1 && pong5Leaderboard.length <= 4) {
             var firstPlace = {
                 Amount: Math.ceil((total5 * .55) * 100),
                 PlayFabId: pong5Leaderboard[0].PlayFabId,
@@ -582,35 +633,33 @@ function getPong5Leaderboard(){
                 console.log("1st")
                 console.log(result)
             })
-            if (pong5Leaderboard.length >= 2 && pong5Leaderboard.length <= 4) {
-                var secondPlace = {
-                    Amount: Math.ceil((total5 * .20) * 100),
-                    PlayFabId: pong5Leaderboard[1].PlayFabId,
-                    VirtualCurrency: "US"
-                };
-                // console.log(firstPlace)
-                // console.log(secondPlace)
-                await new Promise(resolve => setTimeout(resolve, 2000));
-                playfab.PlayFabAdmin.AddUserVirtualCurrency(secondPlace, function (error, result)
-                {
-                    console.log("2nd")
-                    console.log(result)
-                })
-            }
+            var secondPlace = {
+                Amount: Math.ceil((total5 * .20) * 100),
+                PlayFabId: pong5Leaderboard[1].PlayFabId,
+                VirtualCurrency: "US"
+            };
+            // console.log(firstPlace)
+            // console.log(secondPlace)
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            playfab.PlayFabAdmin.AddUserVirtualCurrency(secondPlace, function (error, result)
+            {
+                console.log("2nd")
+                console.log(result)
+            })
         }
         else if (pong5Leaderboard.length >= 5 && pong5Leaderboard.length < 10) {
             var firstPlace = {
-                Amount: Math.ceil((total5 * .44 ) * 100),
+                Amount: Math.ceil((total5 * .43 ) * 100),
                 PlayFabId: pong5Leaderboard[0].PlayFabId,
                 VirtualCurrency: "US"
             };
             var secondPlace = {
-                Amount: Math.ceil((total5 * .24 ) * 100),
+                Amount: Math.ceil((total5 * .22 ) * 100),
                 PlayFabId: pong5Leaderboard[1].PlayFabId,
                 VirtualCurrency: "US"
             };
             var thirdPlace = {
-                Amount: Math.ceil((total5 * .12 ) * 100),
+                Amount: Math.ceil((total5 * .10 ) * 100),
                 PlayFabId: pong5Leaderboard[2].PlayFabId,
                 VirtualCurrency: "US"
             };
@@ -634,7 +683,7 @@ function getPong5Leaderboard(){
         }
         else if (pong5Leaderboard.length >= 10 ) {
             var firstPlace = {
-                Amount: Math.ceil((total5 * .26 ) * 100),
+                Amount: Math.ceil((total5 * .25 ) * 100),
                 PlayFabId: pong5Leaderboard[0].PlayFabId,
                 VirtualCurrency: "US"
             };
@@ -644,7 +693,7 @@ function getPong5Leaderboard(){
                 VirtualCurrency: "US"
             };
             var thirdPlace = {
-                Amount: Math.ceil((total5 * .16 ) * 100),
+                Amount: Math.ceil((total5 * .15 ) * 100),
                 PlayFabId: pong5Leaderboard[2].PlayFabId,
                 VirtualCurrency: "US"
             };
@@ -654,7 +703,7 @@ function getPong5Leaderboard(){
                 VirtualCurrency: "US"
             };
             var fifthPlace = {
-                Amount: Math.ceil((total5 * .06 ) * 100),
+                Amount: Math.ceil((total5 * .05 ) * 100),
                 PlayFabId: pong5Leaderboard[4].PlayFabId,
                 VirtualCurrency: "US"
             };
@@ -693,8 +742,8 @@ function getPong5Leaderboard(){
 function getSauceDailyLeaderboard(){
     var leaderboard = {
             StartPosition: 0,
-            StatisticName: "HotSauceDaily",
-            MaxResultsCount: 50
+            StatisticName: "HotSauceDaily"
+            
         };
     playfab.PlayFabClient.GetLeaderboard(leaderboard, async function (error, result)
         {
@@ -706,7 +755,19 @@ function getSauceDailyLeaderboard(){
             // console.log(sauceDailyLeaderboard.length)
             console.log(total)
             await new Promise(resolve => setTimeout(resolve, 2000));
-            if (sauceDailyLeaderboard.length >= 1 && sauceDailyLeaderboard.length <= 4) {
+            if (pongDailyLeaderboard.length == 1) {
+                var firstPlace = {
+                    Amount: 2,
+                    PlayFabId: pongDailyLeaderboard[0].PlayFabId,
+                    VirtualCurrency: "US"
+                };
+                playfab.PlayFabAdmin.AddUserVirtualCurrency(firstPlace, function (error, result)
+                {
+                    console.log("1st")
+                    console.log(result)
+                })
+            }
+            else if (sauceDailyLeaderboard.length >= 2 && sauceDailyLeaderboard.length <= 4) {
             var firstPlace = {
                 Amount: Math.ceil((total * .55) * 100),
                 PlayFabId: sauceDailyLeaderboard[0].PlayFabId,
@@ -718,7 +779,6 @@ function getSauceDailyLeaderboard(){
                 console.log("1st")
                 console.log(result)
             })
-            if (sauceDailyLeaderboard.length >= 2 && sauceDailyLeaderboard.length <= 4) {
             var secondPlace = {
                 Amount: Math.ceil((total * .20) * 100),
                 PlayFabId: sauceDailyLeaderboard[1].PlayFabId,
@@ -733,20 +793,19 @@ function getSauceDailyLeaderboard(){
                 console.log(result)
             })
         }
-        }
         else if (sauceDailyLeaderboard.length >= 5 && sauceDailyLeaderboard.length < 10) {
             var firstPlace = {
-                Amount: Math.ceil((total * .44 ) * 100),
+                Amount: Math.ceil((total * .43 ) * 100),
                 PlayFabId: sauceDailyLeaderboard[0].PlayFabId,
                 VirtualCurrency: "US"
             };
             var secondPlace = {
-                Amount: Math.ceil((total * .24 ) * 100),
+                Amount: Math.ceil((total * .22 ) * 100),
                 PlayFabId: sauceDailyLeaderboard[1].PlayFabId,
                 VirtualCurrency: "US"
             };
             var thirdPlace = {
-                Amount: Math.ceil((total * .12 ) * 100),
+                Amount: Math.ceil((total * .10 ) * 100),
                 PlayFabId: sauceDailyLeaderboard[2].PlayFabId,
                 VirtualCurrency: "US"
             };
@@ -770,7 +829,7 @@ function getSauceDailyLeaderboard(){
         }
         else if (sauceDailyLeaderboard.length >= 10 ) {
             var firstPlace = {
-                Amount: Math.ceil((total * .26 ) * 100),
+                Amount: Math.ceil((total * .25 ) * 100),
                 PlayFabId: sauceDailyLeaderboard[0].PlayFabId,
                 VirtualCurrency: "US"
             };
@@ -780,7 +839,7 @@ function getSauceDailyLeaderboard(){
                 VirtualCurrency: "US"
             };
             var thirdPlace = {
-                Amount: Math.ceil((total * .16 ) * 100),
+                Amount: Math.ceil((total * .15 ) * 100),
                 PlayFabId: sauceDailyLeaderboard[2].PlayFabId,
                 VirtualCurrency: "US"
             };
@@ -790,7 +849,7 @@ function getSauceDailyLeaderboard(){
                 VirtualCurrency: "US"
             };
             var fifthPlace = {
-                Amount: Math.ceil((total * .06 ) * 100),
+                Amount: Math.ceil((total * .05 ) * 100),
                 PlayFabId: sauceDailyLeaderboard[4].PlayFabId,
                 VirtualCurrency: "US"
             };
@@ -829,8 +888,8 @@ function getSauceDailyLeaderboard(){
 function getSauce05Leaderboard(){
     var leaderboard = {
             StartPosition: 0,
-            StatisticName: "HotSauceDaily.05",
-            MaxResultsCount: 50
+            StatisticName: "HotSauceDaily.05"
+            
         };
     playfab.PlayFabClient.GetLeaderboard(leaderboard, async function (error, result)
         {
@@ -842,7 +901,19 @@ function getSauce05Leaderboard(){
             // console.log(sauce05Leaderboard.length)
             // console.log(total)
             await new Promise(resolve => setTimeout(resolve, 2000));
-            if (sauce05Leaderboard.length >= 1 && sauce05Leaderboard.length <= 4) {
+            if (pongDailyLeaderboard.length == 1) {
+                var firstPlace = {
+                    Amount: 6,
+                    PlayFabId: pongDailyLeaderboard[0].PlayFabId,
+                    VirtualCurrency: "US"
+                };
+                playfab.PlayFabAdmin.AddUserVirtualCurrency(firstPlace, function (error, result)
+                {
+                    console.log("1st")
+                    console.log(result)
+                })
+            }
+            if (sauce05Leaderboard.length >= 2 && sauce05Leaderboard.length <= 4) {
             var firstPlace = {
                 Amount: Math.ceil((total05 * .55) * 100),
                 PlayFabId: sauce05Leaderboard[0].PlayFabId,
@@ -853,36 +924,34 @@ function getSauce05Leaderboard(){
                 console.log("1st")
                 console.log(result)
             })
-            if (sauce05Leaderboard.length >= 2 && sauce05Leaderboard.length <= 4) {
-                var secondPlace = {
-                    Amount: Math.ceil((total05 * .20) * 100),
-                    PlayFabId: sauce05Leaderboard[1].PlayFabId,
-                    VirtualCurrency: "US"
-                };
-                // console.log(firstPlace)
-                // console.log(secondPlace)
+            var secondPlace = {
+                Amount: Math.ceil((total05 * .20) * 100),
+                PlayFabId: sauce05Leaderboard[1].PlayFabId,
+                VirtualCurrency: "US"
+            };
+            // console.log(firstPlace)
+            // console.log(secondPlace)
 
-                await new Promise(resolve => setTimeout(resolve, 2000));
-                playfab.PlayFabAdmin.AddUserVirtualCurrency(secondPlace, function (error, result)
-                {
-                    console.log("2nd")
-                    console.log(result)
-                })
-            }
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            playfab.PlayFabAdmin.AddUserVirtualCurrency(secondPlace, function (error, result)
+            {
+                console.log("2nd")
+                console.log(result)
+            })
         }
         else if (sauce05Leaderboard.length >= 5 && sauce05Leaderboard.length < 10) {
             var firstPlace = {
-                Amount: Math.ceil((total05 * .44 ) * 100),
+                Amount: Math.ceil((total05 * .43 ) * 100),
                 PlayFabId: sauce05Leaderboard[0].PlayFabId,
                 VirtualCurrency: "US"
             };
             var secondPlace = {
-                Amount: Math.ceil((total05 * .24 ) * 100),
+                Amount: Math.ceil((total05 * .22 ) * 100),
                 PlayFabId: sauce05Leaderboard[1].PlayFabId,
                 VirtualCurrency: "US"
             };
             var thirdPlace = {
-                Amount: Math.ceil((total05 * .12 ) * 100),
+                Amount: Math.ceil((total05 * .10 ) * 100),
                 PlayFabId: sauce05Leaderboard[2].PlayFabId,
                 VirtualCurrency: "US"
             };
@@ -906,7 +975,7 @@ function getSauce05Leaderboard(){
         }
         else if (sauce05Leaderboard.length >= 10 ) {
             var firstPlace = {
-                Amount: Math.ceil((total05 * .26 ) * 100),
+                Amount: Math.ceil((total05 * .25 ) * 100),
                 PlayFabId: sauce05Leaderboard[0].PlayFabId,
                 VirtualCurrency: "US"
             };
@@ -916,7 +985,7 @@ function getSauce05Leaderboard(){
                 VirtualCurrency: "US"
             };
             var thirdPlace = {
-                Amount: Math.ceil((total05 * .16 ) * 100),
+                Amount: Math.ceil((total05 * .15 ) * 100),
                 PlayFabId: sauce05Leaderboard[2].PlayFabId,
                 VirtualCurrency: "US"
             };
@@ -926,7 +995,7 @@ function getSauce05Leaderboard(){
                 VirtualCurrency: "US"
             };
             var fifthPlace = {
-                Amount: Math.ceil((total05 * .06 ) * 100),
+                Amount: Math.ceil((total05 * .05 ) * 100),
                 PlayFabId: sauce05Leaderboard[4].PlayFabId,
                 VirtualCurrency: "US"
             };
@@ -965,8 +1034,8 @@ function getSauce05Leaderboard(){
 function getSauce50Leaderboard(){
     var leaderboard = {
             StartPosition: 0,
-            StatisticName: "HotSauceDaily.50",
-            MaxResultsCount: 50
+            StatisticName: "HotSauceDaily.50"
+            
         };
     playfab.PlayFabClient.GetLeaderboard(leaderboard, async function (error, result)
         {
@@ -978,7 +1047,19 @@ function getSauce50Leaderboard(){
             // console.log(sauce50Leaderboard.length)
             // console.log(total)
             await new Promise(resolve => setTimeout(resolve, 2000));
-            if (sauce50Leaderboard.length >= 1 && sauce50Leaderboard.length <= 4) {
+            if (pongDailyLeaderboard.length == 1) {
+                var firstPlace = {
+                    Amount: 55,
+                    PlayFabId: pongDailyLeaderboard[0].PlayFabId,
+                    VirtualCurrency: "US"
+                };
+                playfab.PlayFabAdmin.AddUserVirtualCurrency(firstPlace, function (error, result)
+                {
+                    console.log("1st")
+                    console.log(result)
+                })
+            }
+            else if (sauce50Leaderboard.length >= 2 && sauce50Leaderboard.length <= 4) {
             var firstPlace = {
                 Amount: Math.ceil((total50 * .55) * 100),
                 PlayFabId: sauce50Leaderboard[0].PlayFabId,
@@ -989,35 +1070,33 @@ function getSauce50Leaderboard(){
                 console.log("1st")
                 console.log(result)
             })
-            if (sauce50Leaderboard.length >= 2 && sauce50Leaderboard.length <= 4) {
-                var secondPlace = {
-                    Amount: Math.ceil((total50 * .20) * 100),
-                    PlayFabId: sauce50Leaderboard[1].PlayFabId,
-                    VirtualCurrency: "US"
-                };
-                // console.log(firstPlace)
-                // console.log(secondPlace)
-                await new Promise(resolve => setTimeout(resolve, 2000));
-                playfab.PlayFabAdmin.AddUserVirtualCurrency(secondPlace, function (error, result)
-                {
-                    console.log("2nd")
-                    console.log(result)
-                })
-            }
+            var secondPlace = {
+                Amount: Math.ceil((total50 * .20) * 100),
+                PlayFabId: sauce50Leaderboard[1].PlayFabId,
+                VirtualCurrency: "US"
+            };
+            // console.log(firstPlace)
+            // console.log(secondPlace)
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            playfab.PlayFabAdmin.AddUserVirtualCurrency(secondPlace, function (error, result)
+            {
+                console.log("2nd")
+                console.log(result)
+            })
         }
         else if (sauce50Leaderboard.length >= 5 && sauce50Leaderboard.length < 10) {
             var firstPlace = {
-                Amount: Math.ceil((total50 * .44 ) * 100),
+                Amount: Math.ceil((total50 * .43 ) * 100),
                 PlayFabId: sauce50Leaderboard[0].PlayFabId,
                 VirtualCurrency: "US"
             };
             var secondPlace = {
-                Amount: Math.ceil((total50 * .24 ) * 100),
+                Amount: Math.ceil((total50 * .22 ) * 100),
                 PlayFabId: sauce50Leaderboard[1].PlayFabId,
                 VirtualCurrency: "US"
             };
             var thirdPlace = {
-                Amount: Math.ceil((total50 * .12 ) * 100),
+                Amount: Math.ceil((total50 * .10 ) * 100),
                 PlayFabId: sauce50Leaderboard[2].PlayFabId,
                 VirtualCurrency: "US"
             };
@@ -1041,7 +1120,7 @@ function getSauce50Leaderboard(){
         }
         else if (sauce50Leaderboard.length >= 10 ) {
             var firstPlace = {
-                Amount: Math.ceil((total50 * .26 ) * 100),
+                Amount: Math.ceil((total50 * .25 ) * 100),
                 PlayFabId: sauce50Leaderboard[0].PlayFabId,
                 VirtualCurrency: "US"
             };
@@ -1051,7 +1130,7 @@ function getSauce50Leaderboard(){
                 VirtualCurrency: "US"
             };
             var thirdPlace = {
-                Amount: Math.ceil((total50 * .16 ) * 100),
+                Amount: Math.ceil((total50 * .15 ) * 100),
                 PlayFabId: sauce50Leaderboard[2].PlayFabId,
                 VirtualCurrency: "US"
             };
@@ -1061,7 +1140,7 @@ function getSauce50Leaderboard(){
                 VirtualCurrency: "US"
             };
             var fifthPlace = {
-                Amount: Math.ceil((total50 * .06 ) * 100),
+                Amount: Math.ceil((total50 * .05 ) * 100),
                 PlayFabId: sauce50Leaderboard[4].PlayFabId,
                 VirtualCurrency: "US"
             };
@@ -1100,8 +1179,8 @@ function getSauce50Leaderboard(){
 function getSauce1Leaderboard(){
     var leaderboard = {
             StartPosition: 0,
-            StatisticName: "HotSauceDaily1",
-            MaxResultsCount: 50
+            StatisticName: "HotSauceDaily1"
+            
         };
     playfab.PlayFabClient.GetLeaderboard(leaderboard, async function (error, result)
         {
@@ -1113,7 +1192,19 @@ function getSauce1Leaderboard(){
             // console.log(sauce1Leaderboard.length)
             // console.log(total)
             await new Promise(resolve => setTimeout(resolve, 2000));
-            if (sauce1Leaderboard.length >= 1 && sauce1Leaderboard.length <= 4) {
+            if (pongDailyLeaderboard.length == 1) {
+                var firstPlace = {
+                    Amount: 110,
+                    PlayFabId: pongDailyLeaderboard[0].PlayFabId,
+                    VirtualCurrency: "US"
+                };
+                playfab.PlayFabAdmin.AddUserVirtualCurrency(firstPlace, function (error, result)
+                {
+                    console.log("1st")
+                    console.log(result)
+                })
+            }
+            else if (sauce1Leaderboard.length >= 2 && sauce1Leaderboard.length <= 4) {
             var firstPlace = {
                 Amount: Math.ceil((total1 * .55) * 100),
                 PlayFabId: sauce1Leaderboard[0].PlayFabId,
@@ -1124,36 +1215,34 @@ function getSauce1Leaderboard(){
                 console.log("1st")
                 console.log(result)
             })
-            if (sauce1Leaderboard.length >= 2 && sauce1Leaderboard.length <= 4) {
-                var secondPlace = {
-                    Amount: Math.ceil((total1 * .20) * 100),
-                    PlayFabId: sauce1Leaderboard[1].PlayFabId,
-                    VirtualCurrency: "US"
-                };
-                // console.log(firstPlace)
-                // console.log(secondPlace)
+            var secondPlace = {
+                Amount: Math.ceil((total1 * .20) * 100),
+                PlayFabId: sauce1Leaderboard[1].PlayFabId,
+                VirtualCurrency: "US"
+            };
+            // console.log(firstPlace)
+            // console.log(secondPlace)
 
-                await new Promise(resolve => setTimeout(resolve, 2000));
-                playfab.PlayFabAdmin.AddUserVirtualCurrency(secondPlace, function (error, result)
-                {
-                    console.log("2nd")
-                    console.log(result)
-                })
-            }
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            playfab.PlayFabAdmin.AddUserVirtualCurrency(secondPlace, function (error, result)
+            {
+                console.log("2nd")
+                console.log(result)
+            })
         }
         else if (sauce1Leaderboard.length >= 5 && sauce1Leaderboard.length < 10) {
             var firstPlace = {
-                Amount: Math.ceil((total1 * .44 ) * 100),
+                Amount: Math.ceil((total1 * .43 ) * 100),
                 PlayFabId: sauce1Leaderboard[0].PlayFabId,
                 VirtualCurrency: "US"
             };
             var secondPlace = {
-                Amount: Math.ceil((total1 * .24 ) * 100),
+                Amount: Math.ceil((total1 * .22 ) * 100),
                 PlayFabId: sauce1Leaderboard[1].PlayFabId,
                 VirtualCurrency: "US"
             };
             var thirdPlace = {
-                Amount: Math.ceil((total1 * .12 ) * 100),
+                Amount: Math.ceil((total1 * .10 ) * 100),
                 PlayFabId: sauce1Leaderboard[2].PlayFabId,
                 VirtualCurrency: "US"
             };
@@ -1177,7 +1266,7 @@ function getSauce1Leaderboard(){
         }
         else if (sauce1Leaderboard.length >= 10 ) {
             var firstPlace = {
-                Amount: Math.ceil((total1 * .26 ) * 100),
+                Amount: Math.ceil((total1 * .25 ) * 100),
                 PlayFabId: sauce1Leaderboard[0].PlayFabId,
                 VirtualCurrency: "US"
             };
@@ -1187,7 +1276,7 @@ function getSauce1Leaderboard(){
                 VirtualCurrency: "US"
             };
             var thirdPlace = {
-                Amount: Math.ceil((total1 * .16 ) * 100),
+                Amount: Math.ceil((total1 * .15 ) * 100),
                 PlayFabId: sauce1Leaderboard[2].PlayFabId,
                 VirtualCurrency: "US"
             };
@@ -1197,7 +1286,7 @@ function getSauce1Leaderboard(){
                 VirtualCurrency: "US"
             };
             var fifthPlace = {
-                Amount: Math.ceil((total1 * .06 ) * 100),
+                Amount: Math.ceil((total1 * .05 ) * 100),
                 PlayFabId: sauce1Leaderboard[4].PlayFabId,
                 VirtualCurrency: "US"
             };
@@ -1236,8 +1325,8 @@ function getSauce1Leaderboard(){
 function getSauce5Leaderboard(){
     var leaderboard = {
             StartPosition: 0,
-            StatisticName: "HotSauceDaily5",
-            MaxResultsCount: 50
+            StatisticName: "HotSauceDaily5"
+            
         };
     playfab.PlayFabClient.GetLeaderboard(leaderboard, async function (error, result)
         {
@@ -1249,7 +1338,19 @@ function getSauce5Leaderboard(){
             // console.log(sauce5Leaderboard.length)
             // console.log(total)
             await new Promise(resolve => setTimeout(resolve, 2000));
-            if (sauce5Leaderboard.length >= 1 && sauce5Leaderboard.length <= 4) {
+            if (pongDailyLeaderboard.length == 1) {
+                var firstPlace = {
+                    Amount: 550,
+                    PlayFabId: pongDailyLeaderboard[0].PlayFabId,
+                    VirtualCurrency: "US"
+                };
+                playfab.PlayFabAdmin.AddUserVirtualCurrency(firstPlace, function (error, result)
+                {
+                    console.log("1st")
+                    console.log(result)
+                })
+            }
+            else if (sauce5Leaderboard.length >= 2 && sauce5Leaderboard.length <= 4) {
             var firstPlace = {
                 Amount: Math.ceil((total5 * .55) * 100),
                 PlayFabId: sauce5Leaderboard[0].PlayFabId,
@@ -1260,35 +1361,33 @@ function getSauce5Leaderboard(){
                 console.log("1st")
                 console.log(result)
             })
-            if (sauce5Leaderboard.length >= 2 && sauce5Leaderboard.length <= 4) {
-                var secondPlace = {
-                    Amount: Math.ceil((total5 * .20) * 100),
-                    PlayFabId: sauce5Leaderboard[1].PlayFabId,
-                    VirtualCurrency: "US"
-                };
-                // console.log(firstPlace)
-                // console.log(secondPlace)
-                await new Promise(resolve => setTimeout(resolve, 2000));
-                playfab.PlayFabAdmin.AddUserVirtualCurrency(secondPlace, function (error, result)
-                {
-                    console.log("2nd")
-                    console.log(result)
-                })
-            }
+            var secondPlace = {
+                Amount: Math.ceil((total5 * .20) * 100),
+                PlayFabId: sauce5Leaderboard[1].PlayFabId,
+                VirtualCurrency: "US"
+            };
+            // console.log(firstPlace)
+            // console.log(secondPlace)
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            playfab.PlayFabAdmin.AddUserVirtualCurrency(secondPlace, function (error, result)
+            {
+                console.log("2nd")
+                console.log(result)
+            })
         }
         else if (sauce5Leaderboard.length >= 5 && sauce5Leaderboard.length < 10) {
             var firstPlace = {
-                Amount: Math.ceil((total5 * .44 ) * 100),
+                Amount: Math.ceil((total5 * .43 ) * 100),
                 PlayFabId: sauce5Leaderboard[0].PlayFabId,
                 VirtualCurrency: "US"
             };
             var secondPlace = {
-                Amount: Math.ceil((total5 * .24 ) * 100),
+                Amount: Math.ceil((total5 * .22 ) * 100),
                 PlayFabId: sauce5Leaderboard[1].PlayFabId,
                 VirtualCurrency: "US"
             };
             var thirdPlace = {
-                Amount: Math.ceil((total5 * .12 ) * 100),
+                Amount: Math.ceil((total5 * .10 ) * 100),
                 PlayFabId: sauce5Leaderboard[2].PlayFabId,
                 VirtualCurrency: "US"
             };
@@ -1312,7 +1411,7 @@ function getSauce5Leaderboard(){
         }
         else if (sauce5Leaderboard.length >= 10 ) {
             var firstPlace = {
-                Amount: Math.ceil((total5 * .26 ) * 100),
+                Amount: Math.ceil((total5 * .25 ) * 100),
                 PlayFabId: sauce5Leaderboard[0].PlayFabId,
                 VirtualCurrency: "US"
             };
@@ -1322,7 +1421,7 @@ function getSauce5Leaderboard(){
                 VirtualCurrency: "US"
             };
             var thirdPlace = {
-                Amount: Math.ceil((total5 * .16 ) * 100),
+                Amount: Math.ceil((total5 * .15 ) * 100),
                 PlayFabId: sauce5Leaderboard[2].PlayFabId,
                 VirtualCurrency: "US"
             };
@@ -1332,7 +1431,7 @@ function getSauce5Leaderboard(){
                 VirtualCurrency: "US"
             };
             var fifthPlace = {
-                Amount: Math.ceil((total5 * .06 ) * 100),
+                Amount: Math.ceil((total5 * .05 ) * 100),
                 PlayFabId: sauce5Leaderboard[4].PlayFabId,
                 VirtualCurrency: "US"
             };
