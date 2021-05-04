@@ -15,7 +15,6 @@ const PORT = process.env.PORT || 4000;
 const app = express();
 
 cron.schedule('15 3 * * *', async function() {
-    console.log('running a task every minute');
     playfab.login();
     await new Promise(resolve => setTimeout(resolve, 2000));
     playfab.getPongDailyLeaderboard();
@@ -43,7 +42,11 @@ const userData = {
     name: "LocalUser"
 };
 
-app.use(cors())
+var corsOptions = {
+    origin: 'https://litgamers.org',
+    optionsSuccessStatus: 200 
+    }
+app.use(cors(corsOptions))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
