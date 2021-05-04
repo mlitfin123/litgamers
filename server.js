@@ -42,7 +42,7 @@ const userData = {
     name: "LocalUser"
 };
 
-app.use(cors({origin: 'https://litgamers.org'}))
+app.use(cors())
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -69,14 +69,6 @@ app.use(function (req, res, next) {
 
 // request handlers
 app.get('/', (req, res) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type'); // If needed
-    res.setHeader('Access-Control-Allow-Credentials', true); 
-    req.setHeader('Access-Control-Allow-Origin', '*');
-    req.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
-    req.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type'); // If needed
-    req.setHeader('Access-Control-Allow-Credentials', true); 
     if (!req.user) return res.status(401).json({ success: false, message: 'Invalid user to access it.' });
 });
 
