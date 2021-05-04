@@ -43,7 +43,7 @@ const userData = {
 };
 
 var corsOptions = {
-    "origin": 'https://litgamers.org',
+    "Access-Control-Allow-Origin": 'https://litgamers.org',
     "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
     "optionsSuccessStatus": 200 
     }
