@@ -42,7 +42,7 @@ const userData = {
     name: "LocalUser"
 };
 
-app.use(cors({origin: 'https://litgamers.org'}))
+app.use(cors({origin: 'null'}))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
