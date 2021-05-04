@@ -5,8 +5,6 @@ var cors = require('cors')
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 const utils = require('./utils');
-const cron = require('node-cron');
-const playfab = require('./cronfunction')
 
 const router = express.Router();
 
@@ -17,25 +15,6 @@ const app = express();
 const userData = {
     name: "LocalUser"
 };
-// Add headers
-app.use(function (req, res, next) {
-
-    // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', '*');
-
-    // Request methods you wish to allow
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-
-    // Request headers you wish to allow
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-
-    // Set to true if you need the website to include cookies in the requests sent
-    // to the API (e.g. in case you use sessions)
-    res.setHeader('Access-Control-Allow-Credentials', true);
-
-    // Pass to next layer of middleware
-    next();
-});
 
 app.use(cors())
 app.use(bodyParser.json());
@@ -182,30 +161,6 @@ app.use('/sauceFive', router);
 app.use('/sauceFree', router);
 app.use('/space', router);
 app.use('/login', router);
-
-cron.schedule('* * * * *', async function() {
-    playfab.login();
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    playfab.getPongDailyLeaderboard();
-    await new Promise(resolve => setTimeout(resolve, 3000));
-    playfab.getPong05Leaderboard();
-    await new Promise(resolve => setTimeout(resolve, 4000));
-    playfab.getPong50Leaderboard();
-    await new Promise(resolve => setTimeout(resolve, 5000));
-    playfab.getPong1Leaderboard();
-    await new Promise(resolve => setTimeout(resolve, 6000));
-    playfab.getPong5Leaderboard();
-    await new Promise(resolve => setTimeout(resolve, 7000));
-    playfab.getSauceDailyLeaderboard();
-    await new Promise(resolve => setTimeout(resolve, 8000));
-    playfab.getSauce05Leaderboard();
-    await new Promise(resolve => setTimeout(resolve, 9000));
-    playfab.getSauce50Leaderboard();
-    await new Promise(resolve => setTimeout(resolve, 10000));
-    playfab.getSauce1Leaderboard();
-    await new Promise(resolve => setTimeout(resolve, 11000));
-    playfab.getSauce5Leaderboard();
-});
 
 app.listen(PORT, function() {
     console.log("App now listening at localhost:" + PORT);
