@@ -152,6 +152,14 @@ export default function HotSauce50(props) {
                 <div id="unity-footer">
                 <button id="unity-fullscreen-button" onClick={onFullScreen}></button>
                 </div>
+                <br></br>
+                <h4>Controls</h4>
+                  <ol>On PC use the left and right arrows to dodge the hot sauce and collect the food and snacks.</ol>
+                  <ol>Not currently Mobile friendly.</ol>
+                <h4>Scoring</h4>
+                  <ol>Chocolate = 100 points</ol>
+                  <ol>Food = Random points between 7 and 12</ol>
+                  <ol>Hot Sauce = -1 life</ol>
             </div>
             </div>
             </div>

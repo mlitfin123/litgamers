@@ -153,6 +153,16 @@ export default function CrazyPong1(props) {
                     <div id="unity-footer">
                         <button id="unity-fullscreen-button" onClick={onFullScreen}></button>
                     </div>
+                    <br></br>
+                    <h4>Controls</h4>
+                    <ol>On PC use the left and right arrows to move back and forth to block the ball from hitting the bottom of the screen.</ol>
+                    <ol>Attempt to direct the ball to avoid the grenades and collect gems and crates.</ol>
+                    <ol>Not currently Mobile friendly.</ol>
+                <h4>Scoring</h4>
+                    <ol>Crate = 50 points</ol>
+                    <ol>Gem = 10 points</ol>
+                    <ol>Top-of-Screen = 1 point</ol>
+                    <ol>Bottom-of-Screen = -1 life</ol>
                 </div>
                 </div>
                 </div>
