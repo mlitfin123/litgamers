@@ -43,6 +43,7 @@ const FreeGames = () => {
                 </div>
                 <div class="col">
                     <h1 className="title">Free Games</h1>
+                    <h3 className="title">Play these games as often as you'd like to either practice for a tournament or for fun completely free!</h3>
                     <table class="table">
                         <tbody>
                             <tr>

@@ -164,7 +164,7 @@ app.use('/sauceFree', router);
 app.use('/space', router);
 app.use('/login', router);
 
-cron.schedule('15 3 * * *', async function() {
+
     playfab.login();
     await new Promise(resolve => setTimeout(resolve, 2000));
     playfab.getPongDailyLeaderboard();
@@ -186,7 +186,7 @@ cron.schedule('15 3 * * *', async function() {
     playfab.getSauce1Leaderboard();
     await new Promise(resolve => setTimeout(resolve, 11000));
     playfab.getSauce5Leaderboard();
-});
+
 
 app.listen(PORT, function() {
     console.log("App now listening at localhost:" + PORT);

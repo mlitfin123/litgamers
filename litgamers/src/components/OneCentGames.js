@@ -43,6 +43,7 @@ const OneCent = () => {
                 </div>
                 <div class="col">
                 <h1 className="title">1¢ Tournaments</h1>
+                <h3 className="title">Tournaments Currently Reset Weekly</h3>
                 <h5 className="title"><u>Payouts</u></h5>
                 <div class="row">
                     <div class="col">

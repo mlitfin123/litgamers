@@ -67,6 +67,7 @@ function Dashboard(props) {
             orderId = result.data.OrderId;
             console.log(result)
             if (result == null){
+                console.log(error)
                 alert("Something went wrong, please try again")
             }})
         handlePayment();
@@ -199,6 +200,7 @@ function Dashboard(props) {
             ProviderName: "PayPal",
             Currency: "RM"
         });
+        console.log(payPurchase)
         PlayFabClient.PayForPurchase(payPurchase, function (error, result) {
                 if (result != null) {
                     confirmURL = result.data.PurchaseConfirmationPageURL
@@ -206,6 +208,7 @@ function Dashboard(props) {
                     console.log(result)
                 }
                 else if (result == null){
+                    console.log(error)
                     alert("Something went wrong")
                 }
         })
@@ -213,15 +216,15 @@ function Dashboard(props) {
         var confirmPurchase = ({
             OrderId: orderId
         });
+        console.log(confirmPurchase)
+        window.confirm("Select Ok once you have made your purchase to confirm")
         PlayFabClient.ConfirmPurchase(confirmPurchase, function (error, result) {
-            window.confirm("Select Ok once you have made your purchase to confirm")
             console.log(result)
+            console.log(error)
             if (result == null) {
                 alert("The purchase was not confirmed, if this is in error please contact us")
             }
             else if (result != null){
-                PlayFabClient.AddUserVirtualCurrency(addCurrency, function (error, result) {
-                    console.log(result)})
                 alert("Your purchase was confirmed! Good Luck!")
             }
         })
