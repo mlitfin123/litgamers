@@ -174,10 +174,10 @@ function getPong05Leaderboard(){
             // console.log(pong05Leaderboard.length)
             // console.log(total)
             await new Promise(resolve => setTimeout(resolve, 2000));
-            if (pongDailyLeaderboard.length == 1) {
+            if (pong05Leaderboard.length == 1) {
                 var firstPlace = {
                     Amount: 6,
-                    PlayFabId: pongDailyLeaderboard[0].PlayFabId,
+                    PlayFabId: pong05Leaderboard[0].PlayFabId,
                     VirtualCurrency: "US"
                 };
                 playfab.PlayFabAdmin.AddUserVirtualCurrency(firstPlace, function (error, result)
@@ -319,10 +319,10 @@ function getPong50Leaderboard(){
             // console.log(pong50Leaderboard.length)
             // console.log(total)
             await new Promise(resolve => setTimeout(resolve, 2000));
-            if (pongDailyLeaderboard.length == 1) {
+            if (pong50Leaderboard.length == 1) {
                 var firstPlace = {
                     Amount: 55,
-                    PlayFabId: pongDailyLeaderboard[0].PlayFabId,
+                    PlayFabId: pong50Leaderboard[0].PlayFabId,
                     VirtualCurrency: "US"
                 };
                 playfab.PlayFabAdmin.AddUserVirtualCurrency(firstPlace, function (error, result)
@@ -464,10 +464,10 @@ function getPong1Leaderboard(){
             // console.log(pong1Leaderboard.length)
             // console.log(total)
             await new Promise(resolve => setTimeout(resolve, 2000));
-            if (pongDailyLeaderboard.length == 1) {
+            if (pong1Leaderboard.length == 1) {
                 var firstPlace = {
                     Amount: 110,
-                    PlayFabId: pongDailyLeaderboard[0].PlayFabId,
+                    PlayFabId: pong1Leaderboard[0].PlayFabId,
                     VirtualCurrency: "US"
                 };
                 playfab.PlayFabAdmin.AddUserVirtualCurrency(firstPlace, function (error, result)
@@ -610,10 +610,10 @@ function getPong5Leaderboard(){
             // console.log(pong5Leaderboard.length)
             // console.log(total)
             await new Promise(resolve => setTimeout(resolve, 2000));
-            if (pongDailyLeaderboard.length == 1) {
+            if (pong5Leaderboard.length == 1) {
                 var firstPlace = {
                     Amount: 550,
-                    PlayFabId: pongDailyLeaderboard[0].PlayFabId,
+                    PlayFabId: pong5Leaderboard[0].PlayFabId,
                     VirtualCurrency: "US"
                 };
                 playfab.PlayFabAdmin.AddUserVirtualCurrency(firstPlace, function (error, result)
@@ -755,10 +755,10 @@ function getSauceDailyLeaderboard(){
             // console.log(sauceDailyLeaderboard.length)
             console.log(total)
             await new Promise(resolve => setTimeout(resolve, 2000));
-            if (pongDailyLeaderboard.length == 1) {
+            if (sauceDailyLeaderboard.length == 1) {
                 var firstPlace = {
                     Amount: 2,
-                    PlayFabId: pongDailyLeaderboard[0].PlayFabId,
+                    PlayFabId: sauceDailyLeaderboard[0].PlayFabId,
                     VirtualCurrency: "US"
                 };
                 playfab.PlayFabAdmin.AddUserVirtualCurrency(firstPlace, function (error, result)
@@ -901,7 +901,7 @@ function getSauce05Leaderboard(){
             // console.log(sauce05Leaderboard.length)
             // console.log(total)
             await new Promise(resolve => setTimeout(resolve, 2000));
-            if (pongDailyLeaderboard.length == 1) {
+            if (sauce05Leaderboard.length == 1) {
                 var firstPlace = {
                     Amount: 6,
                     PlayFabId: pongDailyLeaderboard[0].PlayFabId,
@@ -1047,10 +1047,10 @@ function getSauce50Leaderboard(){
             // console.log(sauce50Leaderboard.length)
             // console.log(total)
             await new Promise(resolve => setTimeout(resolve, 2000));
-            if (pongDailyLeaderboard.length == 1) {
+            if (sauce50Leaderboard.length == 1) {
                 var firstPlace = {
                     Amount: 55,
-                    PlayFabId: pongDailyLeaderboard[0].PlayFabId,
+                    PlayFabId: sauce50Leaderboard[0].PlayFabId,
                     VirtualCurrency: "US"
                 };
                 playfab.PlayFabAdmin.AddUserVirtualCurrency(firstPlace, function (error, result)
@@ -1192,10 +1192,10 @@ function getSauce1Leaderboard(){
             // console.log(sauce1Leaderboard.length)
             // console.log(total)
             await new Promise(resolve => setTimeout(resolve, 2000));
-            if (pongDailyLeaderboard.length == 1) {
+            if (sauce1Leaderboard.length == 1) {
                 var firstPlace = {
                     Amount: 110,
-                    PlayFabId: pongDailyLeaderboard[0].PlayFabId,
+                    PlayFabId: sauce1Leaderboard[0].PlayFabId,
                     VirtualCurrency: "US"
                 };
                 playfab.PlayFabAdmin.AddUserVirtualCurrency(firstPlace, function (error, result)
@@ -1338,10 +1338,10 @@ function getSauce5Leaderboard(){
             // console.log(sauce5Leaderboard.length)
             // console.log(total)
             await new Promise(resolve => setTimeout(resolve, 2000));
-            if (pongDailyLeaderboard.length == 1) {
+            if (sauce5Leaderboard.length == 1) {
                 var firstPlace = {
                     Amount: 550,
-                    PlayFabId: pongDailyLeaderboard[0].PlayFabId,
+                    PlayFabId: sauce5Leaderboard[0].PlayFabId,
                     VirtualCurrency: "US"
                 };
                 playfab.PlayFabAdmin.AddUserVirtualCurrency(firstPlace, function (error, result)
