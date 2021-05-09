@@ -77,6 +77,7 @@ export default function CrazyPongFree(props) {
             <div className="row">
                 <div className="col-3"></div>
                 <div className="col-6">
+                <div id="not-available"><h4>This game is not available on this screen size</h4></div>
             <div id="unity-container" class="unity-desktop">
                 <Unity unityContext={unityContext} width="960px" height="600px"/>
                 <div id="unity-loading-bar">

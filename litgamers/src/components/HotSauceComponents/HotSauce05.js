@@ -141,6 +141,7 @@ export default function HotSauce05(props) {
                     </ol>
                 </div>
                 <div className="col-7">
+                <div id="not-available"><h4>This game is not available on this screen size</h4></div>
             <div id="unity-container" class="unity-desktop">
                 <Unity unityContext={unityContext} width="1020px" height="600px"/>
                 <div id="unity-loading-bar">
