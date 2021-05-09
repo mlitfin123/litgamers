@@ -1468,17 +1468,31 @@ function getSauce5Leaderboard(){
     });
 }
 
-login();
-getPongDailyLeaderboard();
-getPong05Leaderboard();
-getPong50Leaderboard();
-getPong1Leaderboard();
-getPong5Leaderboard();
-getSauceDailyLeaderboard();
-getSauce05Leaderboard();
-getSauce50Leaderboard();
-getSauce1Leaderboard();
-getSauce5Leaderboard();
+async function leaderPayout() {
+    login();
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    getPongDailyLeaderboard();
+    await new Promise(resolve => setTimeout(resolve, 3000));
+    getPong05Leaderboard();
+    await new Promise(resolve => setTimeout(resolve, 4000));
+    getPong50Leaderboard();
+    await new Promise(resolve => setTimeout(resolve, 5000));
+    getPong1Leaderboard();
+    await new Promise(resolve => setTimeout(resolve, 6000));
+    getPong5Leaderboard();
+    await new Promise(resolve => setTimeout(resolve, 7000));
+    getSauceDailyLeaderboard();
+    await new Promise(resolve => setTimeout(resolve, 8000));
+    getSauce05Leaderboard();
+    await new Promise(resolve => setTimeout(resolve, 9000));
+    getSauce50Leaderboard();
+    await new Promise(resolve => setTimeout(resolve, 10000));
+    getSauce1Leaderboard();
+    await new Promise(resolve => setTimeout(resolve, 11000));
+    getSauce5Leaderboard();
+};
+
+leaderPayout();
 
 module.exports = {
     login,
