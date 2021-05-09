@@ -1492,18 +1492,8 @@ async function leaderPayout() {
     getSauce5Leaderboard();
 };
 
-leaderPayout();
+// leaderPayout();
 
 module.exports = {
-    login,
-    getPongDailyLeaderboard,
-    getPong05Leaderboard,
-    getPong50Leaderboard,
-    getPong1Leaderboard,
-    getPong5Leaderboard,
-    getSauceDailyLeaderboard,
-    getSauce05Leaderboard,
-    getSauce50Leaderboard,
-    getSauce1Leaderboard,
-    getSauce5Leaderboard
+    leaderPayout
 }
