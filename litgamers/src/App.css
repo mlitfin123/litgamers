@@ -26,7 +26,8 @@ button {
   outline:none;
 }
 .title{
-  padding: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   text-align: center;
   text-decoration: underline;
 }
@@ -174,7 +175,7 @@ footer {
     z-index: 2;
     text-align: center; }
   #banner nav .navbar-nav {
-    max-width: 455px;
+    max-width: 500px;
     margin: 0 auto; 
     font-size: 18px;
   }
@@ -200,3 +201,43 @@ footer {
     padding-bottom: 1px;
     border-bottom: 2px solid white;
   }
+#sidenav-across {
+  display: none;
+}
+#gamesSmall {
+  display: none;
+}
+/* .controls {
+  text-align: left;
+  padding-left: 150px;
+} */
+@media (max-width: 800px) {
+  #sidenav-down {
+    display: none;
+  }
+  #sidenav-across {
+    display: block;
+    font-size: 14px;
+  }
+  #sidenav-across .nav-item {
+    padding: 5px;
+  }
+  #sidenav-across #navSide {
+    padding: 22px;
+  }
+  #gamesSmall {
+    padding-left: 15px;
+    display: block;
+    text-align: center;
+  }
+  #gamesLarge {
+    display: none;
+  }
+  #payouts {
+    padding-left: 10px;
+  }
+  /* .controls {
+    text-align: left;
+    padding-left: 10px;
+  } */
+}

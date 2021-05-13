@@ -124,13 +124,13 @@ export default function CrazyPong05(props) {
                 }
             </header>
             <div class="row">
-                <div className="col-1">
+                <div className="col-2">
                     <h2 className="title">Leaderboard</h2>
                 </div>
-                <div className="col-8">
+                <div className="col-7">
                     <h1 className="title">Crazy Pong!</h1>
                 </div>
-                <div className="col-4"></div>
+                <div className="col-3"></div>
             </div>
             <div className="row">
                 <div className="col-2">
@@ -154,11 +154,13 @@ export default function CrazyPong05(props) {
                 <button id="unity-fullscreen-button" onClick={onFullScreen}></button>
                 </div>
                 <br></br>
-                <h4>Controls</h4>
+                <h4><u>Controls</u></h4>
                     <ol>On PC use the left and right arrows to move back and forth to block the ball from hitting the bottom of the screen.</ol>
+                    <ol>The mouse can also be used by clicking on either side of the paddle to move in the corresponding direction.</ol>
                     <ol>Attempt to direct the ball to avoid the grenades and collect gems and crates.</ol>
-                    <ol>Not currently Mobile friendly.</ol>
-                <h4>Scoring</h4>
+                    <span style={{ color: 'red' }}>Warning: This game works best on PC</span>
+                    <ol>On mobile touch the screen to the right of the paddle to move to the right and left to move left.</ol>
+                  <h4><u>Scoring</u></h4>
                     <ol>Crate = 50 points</ol>
                     <ol>Gem = 10 points</ol>
                     <ol>Top-of-Screen = 1 point</ol>

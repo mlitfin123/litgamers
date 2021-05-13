@@ -44,27 +44,51 @@ const Home = () => {
                 <div className="col">
                     <h1 className="title">Welcome Gamers!</h1>
                     <h3 className="title">Check out our Free Featured games</h3>
-                    <table class="table">
+                    <table class="table" id="gamesLarge">
+                            <tbody>
+                                <tr>
+                                <td>
+                                    <div id="sauce" className="games">
+                                        <Link to="/saucefree"><img src="..\images\Icon.PNG" alt="play the game" width="150px"></img>
+                                        <h3 className="gameLabel">Hot Sauce Fury</h3></Link>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div id="space" className="games">
+                                        <Link to="/spacefree"><img src="..\images\Space_Shooter icon.png" alt="play the game" width="150px"></img>
+                                        <h3 className="gameLabel">Space Shooter</h3></Link>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div id="pong" className="games">
+                                        <Link to="/pongfree"><img src="..\images\pong_icon.PNG" alt="play the game" width="150px"></img>
+                                        <h3 className="gameLabel">Crazy Pong</h3></Link>
+                                    </div>
+                                </td>
+                                </tr>
+                            </tbody>
+                    </table>
+                    <table class="table" id="gamesSmall">
                         <tbody>
                             <tr>
-                            <td>
                                 <div id="sauce" className="games">
                                     <Link to="/saucefree"><img src="..\images\Icon.PNG" alt="play the game" width="150px"></img>
                                     <h3 className="gameLabel">Hot Sauce Fury</h3></Link>
                                 </div>
-                            </td>
-                            <td>
+                                <br></br>
+                            </tr>
+                            <tr>
                                 <div id="space" className="games">
                                     <Link to="/spacefree"><img src="..\images\Space_Shooter icon.png" alt="play the game" width="150px"></img>
                                     <h3 className="gameLabel">Space Shooter</h3></Link>
                                 </div>
-                            </td>
-                            <td>
+                                <br></br>
+                            </tr>
+                            <tr>
                                 <div id="pong" className="games">
                                     <Link to="/pongfree"><img src="..\images\pong_icon.PNG" alt="play the game" width="150px"></img>
                                     <h3 className="gameLabel">Crazy Pong</h3></Link>
                                 </div>
-                            </td>
                             </tr>
                         </tbody>
                     </table>

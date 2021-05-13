@@ -66,17 +66,7 @@ export default function HotSauceFree(props) {
                     )
                 }
             </header>
-            <div class="row">
-                <div className="col-3">
-                </div>
-                <div className="col-6">
                     <h1 className="title">Hot Sauce Fury!</h1>
-                </div>
-                <div className="col-3"></div>
-            </div>
-            <div className="row">
-                <div className="col-3"></div>
-                <div className="col-6">
                 <div id="not-available"><h4>This game is not available on this screen size</h4></div>
             <div id="unity-container" class="unity-desktop">
                 <Unity unityContext={unityContext} width="960px" height="600px"/>
@@ -90,17 +80,18 @@ export default function HotSauceFree(props) {
                 <button id="unity-fullscreen-button" onClick={onFullScreen}></button>
                 </div>
                 <br></br>
-                <h4>Controls</h4>
+                <div className="controls">
+                <h4><u>Controls</u></h4>
                     <ol>On PC use the left and right arrows to dodge the hot sauce and collect the food and snacks.</ol>
-                    <ol>Not currently Mobile friendly.</ol>
-                <h4>Scoring</h4>
+                    <ol>The mouse can also be used by clicking on either side of the character to move in the corresponding direction.</ol>
+                    <span style={{ color: 'red' }}>Warning: This game works best on PC</span>
+                    <ol>On mobile touch the screen to the right of the character to move to the right and left to move left.</ol>
+                <h4><u>Scoring</u></h4>
                     <ol>Chocolate = 100 points</ol>
                     <ol>Food = Random points between 7 and 12</ol>
                     <ol>Hot Sauce = -1 life</ol>
+                </div>
             </div>
-            </div>
-            </div>
-            <div className="col-3"></div>
         </main>
     ) ;
 }

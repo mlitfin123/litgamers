@@ -124,13 +124,13 @@ export default function HotSauce01(props) {
                 }
             </header>
             <div class="row">
-                <div className="col-1">
+                <div className="col-2">
                     <h2 className="title">Leaderboard</h2>
                 </div>
-                <div className="col-8">
+                <div className="col-7">
                     <h1 className="title">Hot Sauce Fury!</h1>
                 </div>
-                <div className="col-4"></div>
+                <div className="col-3"></div>
             </div>
             <div className="row">
                 <div className="col-2">
@@ -154,10 +154,12 @@ export default function HotSauce01(props) {
                 <button id="unity-fullscreen-button" onClick={onFullScreen}></button>
                 </div>
                 <br></br>
-                <h4>Controls</h4>
+                <h4><u>Controls</u></h4>
                   <ol>On PC use the left and right arrows to dodge the hot sauce and collect the food and snacks.</ol>
-                  <ol>Not currently Mobile friendly.</ol>
-                <h4>Scoring</h4>
+                  <ol>The mouse can also be used by clicking on either side of the character to move in the corresponding direction.</ol>
+                  <span style={{ color: 'red' }}>Warning: This game works best on PC</span>
+                  <ol>On mobile touch the screen to the right of the character to move to the right and left to move left.</ol>
+                <h4><u>Scoring</u></h4>
                   <ol>Chocolate = 100 points</ol>
                   <ol>Food = Random points between 7 and 12</ol>
                   <ol>Hot Sauce = -1 life</ol>

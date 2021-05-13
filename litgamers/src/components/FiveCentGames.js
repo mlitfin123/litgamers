@@ -45,7 +45,7 @@ const FiveCent = () => {
                 <h1 className="title">5¢ Tournaments</h1>
                 <h3 className="title">Tournaments Currently Reset Weekly</h3>
                 <h5 className="title"><u>Payouts</u></h5>
-                <div class="row">
+                <div class="row" id ="payouts">
                     <div class="col">
                         <h7>4 or less player entries</h7>
                         <ul>
@@ -72,7 +72,7 @@ const FiveCent = () => {
                             </ul>
                         </div>
                     </div>
-                    <table class="table">
+                    <table class="table" id="gamesLarge">
                         <tbody>
                             <tr>
                             <td>
@@ -89,6 +89,23 @@ const FiveCent = () => {
                             </td>
                             </tr>
                             <tr>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table" id="gamesSmall">
+                        <tbody>
+                            <tr>
+                                <div id="sauce" className="games">
+                                    <Link to="/sauce05"><img src="..\images\Icon.PNG" alt="play the game" width="150px"></img>
+                                    <h3 className="gameLabel">Hot Sauce Fury</h3></Link>
+                                </div>
+                                <br></br>
+                            </tr>
+                            <tr>
+                                <div id="pong" className="games">
+                                    <Link to="/pong05"><img src="..\images\pong_icon.PNG" alt="play the game" width="150px"></img>
+                                    <h3 className="gameLabel">Crazy Pong</h3></Link>
+                                </div>
                             </tr>
                         </tbody>
                     </table>

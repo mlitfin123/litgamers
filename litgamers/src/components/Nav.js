@@ -22,6 +22,24 @@ const Nav = () => {
             case '/login':
                 setActivePage('login');
             break;
+            case '/free':
+                setActivePage('freegames');
+            break;
+            case '/onecent':
+                setActivePage('onecent');
+            break;
+            case '/fivecent':
+                setActivePage('fivecent');
+            break;
+            case '/fiftycent':
+                setActivePage('fiftycent');
+            break;
+            case '/onedollar':
+                setActivePage('onedollar');
+            break;
+            case '/fivedollar':
+                setActivePage('fivedollar');
+            break;
             default: 
                 setActivePage('/');
             break;
@@ -45,7 +63,7 @@ return (
                     <Link id="navHead" onClick={() => setActivePage('contact')} className={activePage === 'contact' ? 'nav-link active' : 'nav-link'} to="/contact">Contact</Link>
                 </li>
                 <li className="nav-item">
-                    <Link id="navHead" onClick={() => setActivePage('login')} className={activePage === 'login' ? 'nav-link active' : 'nav-link'} to="/login">Login</Link>
+                    <Link id="navHead" onClick={() => setActivePage('login')} className={activePage === 'login' ? 'nav-link active' : 'nav-link'} to="/login">Login/Dashboard</Link>
                 </li>
             </ul>
         </div>
