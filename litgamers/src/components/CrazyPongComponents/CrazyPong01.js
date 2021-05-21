@@ -46,22 +46,17 @@ export default function CrazyPong01(props) {
       PlayFabClient.UpdatePlayerStatistics(statisticsUpdate, function (error, result)
       {
         if (result != null){
-          var subtractCurrency = {
-            Amount: 1,
-            VirtualCurrency: "US"
-          }
-          PlayFabClient.SubtractUserVirtualCurrency(subtractCurrency, function (error, result){
-            sessionStorage.setItem("balance", (balance1 - .01).toFixed(2));
-          })
+          alert("Your Final Score is: " + finalScore + "!")
+          alert("Play again to improve your score or play another game! Scores will be reset on Sunday night after 12 PM EST.")
+          props.history.push('/onecent');
           console.log("Leaderboard Updated!")}
           else if (result == null) {
             alert("Something went wrong sending the leaderboard, please contact us")
+            props.history.push('/onecent');
           }
         })
-        alert("Play again to improve your score or play another game! Scores will be reset tomorrow.")
-        props.history.push('/onecent');
-    }
-  );
+      }
+    );
 
   const onFullScreen = () => {
     unityContext.setFullscreen(true);
@@ -86,9 +81,26 @@ export default function CrazyPong01(props) {
       
       const verifyPayment = async () => {
         await new Promise(resolve => setTimeout(resolve, 1000));
-        if (window.confirm("Please confirm 1¢ charge to your account to enter this tournament! You will only be charged if you finish the game and your score is sent to the leaderboard") == false)
+        if (window.confirm("Please confirm 1¢ charge to your account to enter this tournament! You will be charged upon clicking Ok.") == false)
         {
           props.history.push('/onecent');
+        }
+        else {
+          alert("Do not refresh or navigate to another page until your score has been sent to the leaderboard at the end of the game, good luck!.")
+          var subtractCurrency = {
+            Amount: 1,
+            VirtualCurrency: "US"
+          }
+          PlayFabClient.SubtractUserVirtualCurrency(subtractCurrency, function (error, result){
+            if (result != null) {
+              sessionStorage.setItem("balance", (balance - .01).toFixed(2));
+              getBalance();
+            }
+            else {
+              alert("There was an error charging your account")
+              props.history.push('/onecent');
+            }
+          })
         }
       }
 
@@ -123,27 +135,18 @@ export default function CrazyPong01(props) {
                     )
                 }
             </header>
-            <div class="row">
-              <div className="col-2">
-                        <h2 className="title">Leaderboard</h2>
-                    </div>
-                    <div className="col-7">
-                        <h1 className="title">Crazy Pong!</h1>
-                    </div>
-                  <div className="col-3"></div>
+            {/iPhone|iPad|iPod|Android/i.test(navigator.userAgent) ? (
+            <div>
+            <div className="row">
+              <div className="col-12">
+                <h1 className="title">Crazy Pong!</h1>
+              </div>
             </div>
             <div className="row">
-                <div className="col-2">
-                  <ol className="leaderboardList">
-                      {leaders.map((leaderMapped, index) => (
-                          <li key={`${leaderMapped.DisplayName}_${leaderMapped.StatValue}`} className="leaderboardItem">{leaderMapped.DisplayName}: {leaderMapped.StatValue}</li>
-                      ))}
-                  </ol>
-                </div>
-                <div className="col-7">
-                  <div id="not-available"><h4>This game is not available on this screen size</h4></div>
+            <div className="col-12">
+                <div id="not-available"><h4>This game is not available on this screen size</h4></div>
             <div id="unity-container" class="unity-desktop">
-                <Unity unityContext={unityContext} width="960px" height="600px"/>
+            <Unity unityContext={unityContext} width="100%" height="100%"/>
                 <div id="unity-loading-bar">
                     <div id="unity-logo"></div>
                     <div id="unity-progress-bar-empty">
@@ -151,10 +154,70 @@ export default function CrazyPong01(props) {
                     </div>
                 </div>
                 <div id="unity-footer">
-                <button id="unity-fullscreen-button" onClick={onFullScreen}></button>
+                    <button id="unity-fullscreen-button" onClick={onFullScreen}></button>
                 </div>
                 <br></br>
+                <div className="controls">
                 <h4><u>Controls</u></h4>
+                    <ol>On PC use the left and right arrows to move back and forth to block the ball from hitting the bottom of the screen.</ol>
+                    <ol>The mouse can also be used by clicking on either side of the paddle to move in the corresponding direction.</ol>
+                    <ol>Attempt to direct the ball to avoid the grenades and collect gems and crates.</ol>
+                    <span style={{ color: 'red' }}>Warning: This game works best on PC</span>
+                    <ol>On mobile touch the screen to the right of the paddle to move to the right and left to move left.</ol>
+                <h4><u>Scoring</u></h4>
+                    <ol>Crate = 50 points</ol>
+                    <ol>Gem = 10 points</ol>
+                    <ol>Top-of-Screen = 1 point</ol>
+                    <ol>Bottom-of-Screen = -1 life</ol>
+                </div>
+            </div>
+            </div> 
+            </div>
+            <div className="row">
+              <div className="col-12">
+                <h2 className="title">Leaderboard</h2>
+                    <ol className="leaderboardList">
+                        {leaders.map((leaderMapped, index) => (
+                            <li key={`${leaderMapped.DisplayName}_${leaderMapped.StatValue}`} className="leaderboardItem">{leaderMapped.DisplayName}: {leaderMapped.StatValue}</li>
+                        ))}
+                    </ol>
+                </div>
+              </div>
+            </div>)
+            :
+            <div>
+                <div className="row">
+                    <div className="col-2">
+                        <h2 className="title">Leaderboard</h2>
+                    </div>
+                    <div className="col-7">
+                        <h1 className="title">Crazy Pong!</h1>
+                    </div>
+                    <div className="col-3"></div>
+                </div>
+                <div className="row">
+                    <div className="col-2">
+                        <ol className="leaderboardList">
+                            {leaders.map((leaderMapped, index) => (
+                                <li key={`${leaderMapped.DisplayName}_${leaderMapped.StatValue}`} className="leaderboardItem">{leaderMapped.DisplayName}: {leaderMapped.StatValue}</li>
+                            ))}
+                        </ol>
+                    </div>
+                    <div className="col-7">
+                    <div id="not-available"><h4>This game is not available on this screen size</h4></div>
+                <div id="unity-container" class="unity-desktop">
+                <Unity unityContext={unityContext} width="960px" height="600px"/>
+                    <div id="unity-loading-bar">
+                        <div id="unity-logo"></div>
+                        <div id="unity-progress-bar-empty">
+                        <div id="unity-progress-bar-full"></div>
+                        </div>
+                    </div>
+                    <div id="unity-footer">
+                        <button id="unity-fullscreen-button" onClick={onFullScreen}></button>
+                    </div>
+                    <br></br>
+                    <h4><u>Controls</u></h4>
                     <ol>On PC use the left and right arrows to move back and forth to block the ball from hitting the bottom of the screen.</ol>
                     <ol>The mouse can also be used by clicking on either side of the paddle to move in the corresponding direction.</ol>
                     <ol>Attempt to direct the ball to avoid the grenades and collect gems and crates.</ol>
@@ -165,10 +228,12 @@ export default function CrazyPong01(props) {
                     <ol>Gem = 10 points</ol>
                     <ol>Top-of-Screen = 1 point</ol>
                     <ol>Bottom-of-Screen = -1 life</ol>
-            </div>
-            </div>
-            </div>
-            <div className="col-3"></div>
+                </div>
+                </div>
+                </div>
+                <div className="col-3"></div>
+                </div>
+              }
         </main>
     ) ;
 }

@@ -19,26 +19,32 @@ export const removeUserSession = () => {
     sessionStorage.removeItem('token');
     sessionStorage.removeItem('user');
     sessionStorage.removeItem('balance');
-    document.cookie = "user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    document.cookie = "pass=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    // document.cookie = "user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    // document.cookie = "pass=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    // document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 }
 
 // set the token and user from the session storage
 export const setUserSession = (token, user, pass) => {
     sessionStorage.setItem('token', token);
     sessionStorage.setItem('user', JSON.stringify(user));
-    function createUserCookie(key, value) {
-        let cookie = escape(key) + "=" + escape(value) + ";" + "path=/";
-        document.cookie = cookie;
-    }
-    user = JSON.stringify(user);
-    user = user.replace(/[{("")}]/g, '')
-    createUserCookie('user', user);
-    function createPassCookie(key, value) {
-        let cookie = escape(key) + "=" + escape(value) + ";" + "path=/";
-        document.cookie = cookie;
-    }
-    pass = JSON.stringify(pass);
-    pass = pass.replace(/[{("")}]/g, '')
-    createPassCookie('pass', pass);
+    // function createUserCookie(key, value) {
+    //     let cookie = escape(key) + "=" + escape(value) + ";" + "path=/";
+    //     document.cookie = cookie;
+    // }
+    // user = JSON.stringify(user);
+    // user = user.replace(/[{("")}]/g, '')
+    // createUserCookie('user', user);
+    // function createPassCookie(key, value) {
+    //     let cookie = escape(key) + "=" + escape(value) + ";" + "path=/";
+    //     document.cookie = cookie;
+    // }
+    // pass = JSON.stringify(pass);
+    // pass = pass.replace(/[{("")}]/g, '')
+    // createPassCookie('pass', pass);
+    // function createTokenCookie(key, value) {
+    //     let cookie = escape(key) + "=" + escape(value) + ";" + "path=/";
+    //     document.cookie = cookie;
+    // }
+    // createTokenCookie('token', token);
 }

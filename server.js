@@ -97,62 +97,62 @@ app.use(express.static("games/SpaceShooters"));
 app.use(express.static("games/CrazyPong"));
 
 
-router.get('/sauce',function(req,res){
-    res.sendFile(path.join(__dirname+'/games/HotSauce/index.html'));
-    //__dirname : It will resolve to your project folder.
-});
-router.get('/sauce5',function(req,res){
-    res.sendFile(path.join(__dirname+'/games/HotSauce/indexFivety.html'));
-    //__dirname : It will resolve to your project folder.
-});
-router.get('/sauce50',function(req,res){
-    res.sendFile(path.join(__dirname+'/games/HotSauce/indexFifty.html'));
-    //__dirname : It will resolve to your project folder.
-});
-router.get('/sauceOne',function(req,res){
-    res.sendFile(path.join(__dirname+'/games/HotSauce/indexOne.html'));
-    //__dirname : It will resolve to your project folder.
-});
-router.get('/sauceFive',function(req,res){
-    res.sendFile(path.join(__dirname+'/games/HotSauce/indexFive.html'));
-    //__dirname : It will resolve to your project folder.
-});
-router.get('/sauceFree',function(req,res){
-    res.sendFile(path.join(__dirname+'/games/HotSauce/indexFree.html'));
-    //__dirname : It will resolve to your project folder.
-});
-router.get('/pong',function(req,res){
-    res.sendFile(path.join(__dirname+'/games/CrazyPong/index.html'));
-    //__dirname : It will resolve to your project folder.
-});
-router.get('/pong5',function(req,res){
-    res.sendFile(path.join(__dirname+'/games/CrazyPong/indexFivety.html'));
-    //__dirname : It will resolve to your project folder.
-});
-router.get('/pong50',function(req,res){
-    res.sendFile(path.join(__dirname+'/games/CrazyPong/indexFifty.html'));
-    //__dirname : It will resolve to your project folder.
-});
-router.get('/pongOne',function(req,res){
-    res.sendFile(path.join(__dirname+'/games/CrazyPong/indexOne.html'));
-    //__dirname : It will resolve to your project folder.
-});
-router.get('/pongFive',function(req,res){
-    res.sendFile(path.join(__dirname+'/games/CrazyPong/indexFive.html'));
-    //__dirname : It will resolve to your project folder.
-});
-router.get('/pongFree',function(req,res){
-    res.sendFile(path.join(__dirname+'/games/CrazyPong/indexFree.html'));
-    //__dirname : It will resolve to your project folder.
-});
-router.get('/space',function(req,res){
-    res.sendFile(path.join(__dirname+'/games/SpaceShooters/index.html'));
-    //__dirname : It will resolve to your project folder.
-});
-router.get('/login',function(req,res){
-    res.sendFile(path.join(__dirname+'/PlayFab/PlayFabGettingStarted.js'));
-    //__dirname : It will resolve to your project folder.
-});
+// router.get('/sauce',function(req,res){
+//     res.sendFile(path.join(__dirname+'/games/HotSauce/index.html'));
+//     //__dirname : It will resolve to your project folder.
+// });
+// router.get('/sauce5',function(req,res){
+//     res.sendFile(path.join(__dirname+'/games/HotSauce/indexFivety.html'));
+//     //__dirname : It will resolve to your project folder.
+// });
+// router.get('/sauce50',function(req,res){
+//     res.sendFile(path.join(__dirname+'/games/HotSauce/indexFifty.html'));
+//     //__dirname : It will resolve to your project folder.
+// });
+// router.get('/sauceOne',function(req,res){
+//     res.sendFile(path.join(__dirname+'/games/HotSauce/indexOne.html'));
+//     //__dirname : It will resolve to your project folder.
+// });
+// router.get('/sauceFive',function(req,res){
+//     res.sendFile(path.join(__dirname+'/games/HotSauce/indexFive.html'));
+//     //__dirname : It will resolve to your project folder.
+// });
+// router.get('/sauceFree',function(req,res){
+//     res.sendFile(path.join(__dirname+'/games/HotSauce/indexFree.html'));
+//     //__dirname : It will resolve to your project folder.
+// });
+// router.get('/pong',function(req,res){
+//     res.sendFile(path.join(__dirname+'/games/CrazyPong/index.html'));
+//     //__dirname : It will resolve to your project folder.
+// });
+// router.get('/pong5',function(req,res){
+//     res.sendFile(path.join(__dirname+'/games/CrazyPong/indexFivety.html'));
+//     //__dirname : It will resolve to your project folder.
+// });
+// router.get('/pong50',function(req,res){
+//     res.sendFile(path.join(__dirname+'/games/CrazyPong/indexFifty.html'));
+//     //__dirname : It will resolve to your project folder.
+// });
+// router.get('/pongOne',function(req,res){
+//     res.sendFile(path.join(__dirname+'/games/CrazyPong/indexOne.html'));
+//     //__dirname : It will resolve to your project folder.
+// });
+// router.get('/pongFive',function(req,res){
+//     res.sendFile(path.join(__dirname+'/games/CrazyPong/indexFive.html'));
+//     //__dirname : It will resolve to your project folder.
+// });
+// router.get('/pongFree',function(req,res){
+//     res.sendFile(path.join(__dirname+'/games/CrazyPong/indexFree.html'));
+//     //__dirname : It will resolve to your project folder.
+// });
+// router.get('/space',function(req,res){
+//     res.sendFile(path.join(__dirname+'/games/SpaceShooters/index.html'));
+//     //__dirname : It will resolve to your project folder.
+// });
+// router.get('/login',function(req,res){
+//     res.sendFile(path.join(__dirname+'/PlayFab/PlayFabGettingStarted.js'));
+//     //__dirname : It will resolve to your project folder.
+// });
 
 app.use('/', router);
 app.use('/sauce', router);

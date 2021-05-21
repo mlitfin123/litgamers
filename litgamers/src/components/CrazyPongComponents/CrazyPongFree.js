@@ -69,7 +69,9 @@ export default function CrazyPongFree(props) {
                 <h1 className="title">Crazy Pong!</h1>
                 <div id="not-available"><h4>This game is not available on this screen size</h4></div>
             <div id="unity-container" class="unity-desktop">
-                <Unity unityContext={unityContext} width="960px" height="600px"/>
+            {/iPhone|iPad|iPod|Android/i.test(navigator.userAgent) ? (<Unity unityContext={unityContext} width="100%" height="100%"/>) :
+                (<Unity unityContext={unityContext} width="960px" height="600px"/>)
+            }
                 <div id="unity-loading-bar">
                     <div id="unity-logo"></div>
                     <div id="unity-progress-bar-empty">

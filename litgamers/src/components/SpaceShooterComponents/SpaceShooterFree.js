@@ -57,33 +57,40 @@ export default function SpaceShooterFree(props) {
                     )
                 }
             </header>
-            <div class="row">
-                <div className="col-3">
-                </div>
-                <div className="col-6">
-                    <h1 className="title">Space Shooters!</h1>
-                </div>
-                <div className="col-3"></div>
-            </div>
-            <div className="row">
-                <div className="col-3"></div>
-                <div className="col-6">
+                <h1 className="title">Space Shooters!</h1>
                 <div id="not-available"><h4>This game is not available on this screen size</h4></div>
             <div id="unity-container" class="unity-desktop">
-                <Unity unityContext={unityContext} width="1060px" height="600px"/>
+                {/iPhone|iPad|iPod|Android/i.test(navigator.userAgent) ? (<Unity unityContext={unityContext} width="100%" height="100%"/>) :
+                (<Unity unityContext={unityContext} width="1060px" height="600px"/>)
+            }
                 <div id="unity-loading-bar">
                     <div id="unity-logo"></div>
                     <div id="unity-progress-bar-empty">
                     <div id="unity-progress-bar-full"></div>
-                    </div>
+                </div>
                 </div>
                 <div id="unity-footer">
                 <button id="unity-fullscreen-button" onClick={onFullScreen}></button>
                 </div>
+                <br></br>
+                <div className="controls">
+                <h4><u>Controls</u></h4>
+                    <ol>On PC use the up and down arrows to dodge the meteors and enemy ships.</ol>
+                    <ol>The mouse can also be used by clicking on either side of the ship to move in the corresponding direction.</ol>
+                    <ol>Press the space bar or click the mouse to shoot.</ol>
+                    <ol>Destroy the boss ship at the end of the level to advance to the next level.</ol>
+                    <ol>Game is over after your ship is destroyed 3 times.</ol>
+                    <span style={{ color: 'red' }}>Warning: This game works best on PC</span>
+                    <ol>On mobile touch the screen above the ship to move up and below the ship to move down.</ol>
+                    <ol>On mobile touch the screen to shoot.</ol>
+                <h4><u>Scoring</u></h4>
+                    <ol>Basic Enemy Ship = 10 points</ol>
+                    <ol>Meteor = 10 points</ol>
+                    <ol>Advanced Enemy Ship = 15 points</ol>
+                    <ol>Boss = 100 points</ol>
+                    <ol>Player Ship Destroyed = -1 life</ol>
+                </div>
             </div>
-            </div>
-            </div>
-            <div className="col-3"></div>
         </main>
     ) ;
 }
