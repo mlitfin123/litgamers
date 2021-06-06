@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import {PlayFabClient} from 'playfab-sdk';
+import axios from 'axios';
+import { setUserSession } from '../utils/Common';
 
 function Register(props) {
     const username = useFormInput('');
@@ -22,7 +24,7 @@ function Register(props) {
         };
         PlayFabClient.RegisterPlayFabUser(registerRequest, function(error, response){
             if (response !== null) {
-                setSuccess("You have been successfully registered")
+                setSuccess("You have been successfully registered, logging in...")
                 return(success);
             }
             else if (response == null) {
@@ -31,6 +33,47 @@ function Register(props) {
             }
         })
     }
+    const loggedIn = async () => {
+        if (success != null) {
+            await new Promise(resolve => setTimeout(resolve, 200));
+            const pwd = password.value;
+            PlayFabClient.settings.titleId = "1DF75";
+            const email = username.value;
+            var loginRequest = {
+                Email: email,
+                Password: pwd,
+                TitleId: PlayFabClient.settings.titleId
+            };
+            PlayFabClient.LoginWithEmailAddress(loginRequest, async function (result, error) {
+                await new Promise(resolve => setTimeout(resolve, 2000));
+                if (result == null) {
+                    axios.post('https://litgamers-server.herokuapp.com/users/signin', { username: username.value, password: password.value }).then(response => {
+                        console.log(response)
+                        setUserSession(response.data.token, email, pwd);
+                        props.history.push('/dashboard');
+                        }).catch(error => {
+                        if (error.response.status === 401) setError(error.response.data.message);
+                            else alert("Something went wrong. Please try again later.");
+                        });
+                }
+                else if (result !== null) {
+                    console.log(result)
+                    alert(result.errorMessage)
+                    return(result);
+                } 
+            });
+        }
+    }
+    loggedIn();
+    const showPassword = () => {
+        var x = document.getElementById("password");
+        if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+
     return(
         <div className="contact-form">
             <h1  id="dashTitle" className="jumbotron p-4 p-md-2 text-white rounded bg-dark text-center">Register User</h1><br /><br />
@@ -52,8 +95,9 @@ function Register(props) {
                 <div className="login">
                     Enter Your Desired Password (must be 6 characters or more)<br />
                 </div>
-                <input type="password" {...password} autoComplete="new-password" placeholder="password"/>
+                <input type="password" {...password} autoComplete="new-password" placeholder="password" id="password"/>
             </div>
+            <div className="checkbox"><input type="checkbox" onChange={showPassword} />Show Password</div>
             {error && <><small style={{ color: 'red' }}>{error}</small><br /></>}
             {success && <><medium style={{ color: 'yellow' }}>{success}</medium><br /></>}
             <br />

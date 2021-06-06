@@ -6,7 +6,9 @@ import emailjs from 'emailjs-com';
 function Dashboard(props) {
     const [balance, setBalance] = useState('');
     const [username, setUsername] = useState('');
-    const user = getUser();
+    const user = useFormInput('');
+    const [error, setError] = useState(null);
+    const [success, setSuccess] = useState(null);
     var orderId;
     var confirmURL;
     var addCurrency;
@@ -230,7 +232,37 @@ function Dashboard(props) {
         })
     }
     const getUserName = () => {
-        setUsername((sessionStorage.getItem("user")).replace(/['"]+/g, ''));
+        // setUsername((sessionStorage.getItem("user")).replace(/['"]+/g, ''));
+        var displayName = {
+            ShowDisplayName: "true"
+        }
+        PlayFabClient.GetPlayerProfile(displayName, function (error, result) {
+            if (result != null){
+                setUsername(result.data.PlayerProfile.DisplayName)
+            }
+            else if (result == null){
+                setUsername("Error Getting Name")
+            }
+            }
+        )
+    }
+    const changeEmail = () => {
+        var email = user.value;
+        var emailChange = ({
+            EmailAddress: email
+        });
+        PlayFabClient.AddOrUpdateContactEmail(emailChange, function (error, result) {
+                if (result != null) {
+                    console.log(result)
+                    setSuccess("Contact Email Successfully Changed")
+                    console.log(error)
+                }
+                else if (result == null){
+                    console.log(error)
+                    setError("Something went wrong, email not changed")
+                    console.log(error)
+                }
+        })
     }
 
     const handleWithdrawal = (e) => {
@@ -319,11 +351,31 @@ function Dashboard(props) {
                     </form>
                 <br></br>
                 <br></br>
-            <input type="button" onClick={handleLogout} value="Logout" />
+                <div>
+                    Change Contact Email Address Associated with Account &#40;This will not change the login email address, please contact us to change the login&#41; <br />
+                    <span className="emailChange"><input id="emailChange" type="email" {...user}/></span>
+                    <input type="button" onClick={changeEmail} value="Submit" />
+                    {error && <><small style={{ color: 'red' }}>{error}</small><br /></>}
+                    {success && <><small style={{ color: 'yellow' }}>{success}</small><br /></>}
+                </div>
+                <br></br>
+                <br></br>
+                <input type="button" onClick={handleLogout} value="Logout" />
             </div>
             </div>
         </main>
     );
+}
+const useFormInput = initialValue => {
+    const [value, setValue] = useState(initialValue);
+    
+    const handleChange = e => {
+        setValue(e.target.value);
+    }
+    return {
+        value,
+        onChange: handleChange
+    }
 }
 
 export default Dashboard;

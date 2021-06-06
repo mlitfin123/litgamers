@@ -86,8 +86,8 @@ function Login(props) {
         <div className="contact-form">
         <h1 id="dashTitle" className="jumbotron p-4 p-md-2 text-white rounded bg-dark text-center">Login</h1><br /><br />
         <div>
-            Username<br />
-            <input id="user" type="text" {...username} autoComplete="new-password" />
+            Username &#40;Email Address&#41;<br />
+            <input id="user" type="email" {...username} autoComplete="new-password" />
         </div>
         <div style={{ marginTop: 10 }}>
             Password<br />
@@ -99,6 +99,8 @@ function Login(props) {
                     <input type="button" value={loading ? 'Loading...' : 'Login'} onClick={handleLogin} disabled={loading} /><br />
                 </div>
                 <Link id="register" to="/register">Register New User</Link>
+                <br></br>
+                <div className="recovery"><Link id="recovery" to="/recovery">Forgotten Password</Link></div>
                 </div>
             </div>
         </div>

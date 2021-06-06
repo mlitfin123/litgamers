@@ -94,6 +94,18 @@ footer {
   border: 1px solid;
   background-color: rgb(228, 228, 228);
 }
+#recovery{
+  color: black;
+  padding: 2px;
+  padding-right: 5px;
+  padding-left: 5px;
+  max-width: 200px;
+  border: 1px solid;
+  background-color: rgb(228, 228, 228);
+}
+.recovery{
+  padding-top: 13px;
+}
 #register:hover{
   background-color: rgba(228, 228, 228, 0.904);
   max-width: 200px;
@@ -201,12 +213,18 @@ footer {
     padding-bottom: 1px;
     border-bottom: 2px solid white;
   }
-#sidenav-across {
-  display: none;
-}
-#gamesSmall {
-  display: none;
-}
+  #sidenav-across {
+    display: none;
+  }
+  #gamesSmall {
+    display: none;
+  }
+  .checkbox {
+    padding-top: 5px;
+  }
+  .emailChange {
+    padding-right: 10px;
+  }
 /* .controls {
   text-align: left;
   padding-left: 150px;

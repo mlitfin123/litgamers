@@ -13,6 +13,7 @@ import FreeGames from './components/FreeGames';
 import Header from './components/Header';
 import Home from './components/Home';
 import Login from './components/Login';
+import Recovery from './components/Recovery';
 import OneCent from './components/OneCentGames';
 import OneDollar from './components/OneDollarGames';
 import { getToken, removeUserSession, setUserSession } from './utils/Common';
@@ -73,6 +74,7 @@ function App() {
         <Route exact path="/onecent" component={OneCent} />
         <Route exact path="/contact" component={Contact} />
         <Route exact path="/register" component={Register} />
+        <Route exact path="/recovery" component={Recovery} />
         <Route exact path="/saucefree" component={HotSauceFree} />
         <Route exact path="/spacefree" component={SpaceShooterFree} />
         <PrivateOneCent exact path="/sauce01" component={HotSauce01} />
